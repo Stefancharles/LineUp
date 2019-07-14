@@ -25,17 +25,17 @@
 /* Public variables ----------------------------------------------------------*/
 /* Public functions ----------------------------------------------------------*/
 /* Private typedef -----------------------------------------------------------*/
-// ÃüÁî×Ö 
+// å‘½ä»¤å­— 
 typedef enum {
-	XFS_CMD_STATUS = 0x21,//²éÑ¯×´Ì¬
-	XFS_CMD_SLEEP = 0x88,//½øÈëµÍ¹¦ºÄÄ£Ê½
-	XFS_CMD_WAKE_UP = 0xFF,//´ÓµÍ¹¦ºÄ·µ»ØÕı³£Ä£Ê½
-	XFS_CMD_VOICE_START = 0x01,//¿ªÊ¼ÓïÒôºÏ³É
-	XFS_CMD_VOICE_STOP = 0x02,//Í£Ö¹ÓïÒôºÏ³É
-	XFS_CMD_VOICE_PAUSE = 0x03,//ÔİÍ£ÓïÒôºÏ³É
-	XFS_CMD_VOICE_RESTORE = 0x04,//»Ö¸´ÓïÒôºÏ³É
-	XFS_CMD_SEND_TO_CACHE = 0x31,//·¢ËÍÎÄ±¾µ½»º´æÇø
-	XFS_CMD_PLAY_FROM_CACHE = 0x32,//´Ó»º´æÇø²¥·ÅÎÄ±¾
+	XFS_CMD_STATUS = 0x21,//æŸ¥è¯¢çŠ¶æ€
+	XFS_CMD_SLEEP = 0x88,//è¿›å…¥ä½åŠŸè€—æ¨¡å¼
+	XFS_CMD_WAKE_UP = 0xFF,//ä»ä½åŠŸè€—è¿”å›æ­£å¸¸æ¨¡å¼
+	XFS_CMD_VOICE_START = 0x01,//å¼€å§‹è¯­éŸ³åˆæˆ
+	XFS_CMD_VOICE_STOP = 0x02,//åœæ­¢è¯­éŸ³åˆæˆ
+	XFS_CMD_VOICE_PAUSE = 0x03,//æš‚åœè¯­éŸ³åˆæˆ
+	XFS_CMD_VOICE_RESTORE = 0x04,//æ¢å¤è¯­éŸ³åˆæˆ
+	XFS_CMD_SEND_TO_CACHE = 0x31,//å‘é€æ–‡æœ¬åˆ°ç¼“å­˜åŒº
+	XFS_CMD_PLAY_FROM_CACHE = 0x32,//ä»ç¼“å­˜åŒºæ’­æ”¾æ–‡æœ¬
 	XFS_CMD_RECOGNIZE_START = 0x10,
 	XFS_CMD_RECOGNIZE_STOP = 0x1F
 }xfsCommandEnum;
@@ -44,38 +44,38 @@ typedef enum {
 #define XFS_RESPONSE_TIMEOUT 300
 
 
-// ÓïÒôÊ¶±ğÃüÁî´Ê 
+// è¯­éŸ³è¯†åˆ«å‘½ä»¤è¯ 
 const char *cmd_word_list[] = {
-	"ÎÒÔÚ³Ô·¹",  //0
-	"ÎÒÔÚĞŞ³µ",  //1
-	"ÎÒÔÚ¼ÓÓÍ",  //2
-	"ÕıÔÚĞİÏ¢",//3
-	"Í¬Òâ",//4
-	"²»Í¬Òâ",//5
-	"ÎÒÈ¥",//6
-	"ÏÖÔÚ¼¸µã",//7
-	"½ñÌì¼¸ºÅ",//8
-	"¶ÁĞÅÏ¢",//9
-	"¿ªÊ¼¶Á",//10
-	"ÕâÊÇÄÄ¶ù",//11
-	"´ò¿ª¹ã²¥",//12
-	"¹Øµô¹ã²¥",//13
-	"´ò¿ªÒôÀÖ",//14
-	"¹ØµôÒôÀÖ",//15
-	"ÔÙÌıÒ»´Î",//16
-	"ÔÙ¶ÁÒ»±é",//17
-	"´óÉùµã",//18
-	"Ğ¡Éùµã",//19
-	"¶Á¶ÌĞÅ",//20
-	"¶ÁÔ¤¾¯ĞÅÏ¢",//21
-	"Ã÷ÌìÌìÆøÔõÑù",//22
-	"½ô¼±Ô¤¾¯ĞÅÏ¢",//23
-	"¿ªÊ¼",//24
-	"Í£Ö¹",//25
-	"ÔİÍ£",//26
-	"¼ÌĞø¶Á",//27
-	"È·¶¨¿ªÊ¼",//28
-	"È¡Ïû"//29
+	"æˆ‘åœ¨åƒé¥­",  //0
+	"æˆ‘åœ¨ä¿®è½¦",  //1
+	"æˆ‘åœ¨åŠ æ²¹",  //2
+	"æ­£åœ¨ä¼‘æ¯",//3
+	"åŒæ„",//4
+	"ä¸åŒæ„",//5
+	"æˆ‘å»",//6
+	"ç°åœ¨å‡ ç‚¹",//7
+	"ä»Šå¤©å‡ å·",//8
+	"è¯»ä¿¡æ¯",//9
+	"å¼€å§‹è¯»",//10
+	"è¿™æ˜¯å“ªå„¿",//11
+	"æ‰“å¼€å¹¿æ’­",//12
+	"å…³æ‰å¹¿æ’­",//13
+	"æ‰“å¼€éŸ³ä¹",//14
+	"å…³æ‰éŸ³ä¹",//15
+	"å†å¬ä¸€æ¬¡",//16
+	"å†è¯»ä¸€é",//17
+	"å¤§å£°ç‚¹",//18
+	"å°å£°ç‚¹",//19
+	"è¯»çŸ­ä¿¡",//20
+	"è¯»é¢„è­¦ä¿¡æ¯",//21
+	"æ˜å¤©å¤©æ°”æ€æ ·",//22
+	"ç´§æ€¥é¢„è­¦ä¿¡æ¯",//23
+	"å¼€å§‹",//24
+	"åœæ­¢",//25
+	"æš‚åœ",//26
+	"ç»§ç»­è¯»",//27
+	"ç¡®å®šå¼€å§‹",//28
+	"å–æ¶ˆ"//29
 };
 
 /* Private macro -------------------------------------------------------------*/
@@ -101,23 +101,23 @@ int xfs_init(void)
 
 
 /**
-  * @brief  ·¢ËÍÃüÁî
-	* @param  cmd: ÃüÁî
-  * @retval 1£º³É¹¦
-  * @retval 0£ºÊ§°Ü
+  * @brief  å‘é€å‘½ä»¤
+	* @param  cmd: å‘½ä»¤
+  * @retval 1ï¼šæˆåŠŸ
+  * @retval 0ï¼šå¤±è´¥
   */
 static int xfs_send_cmd(uint8_t cmd)
 {
-	unsigned  char frame_info[8]; //¶¨ÒåµÄÎÄ±¾³¤¶È
+	unsigned  char frame_info[8]; //å®šä¹‰çš„æ–‡æœ¬é•¿åº¦
 	uint16_t frame_len = 0;
 	 
-/*****************Ö¡¹Ì¶¨ÅäÖÃĞÅÏ¢**************************************/           
-	frame_info[frame_len++] = 0xFD ; 			//¹¹ÔìÖ¡Í·FD
-	frame_info[frame_len++] = 0x00 ; 			//¹¹ÔìÊı¾İÇø³¤¶ÈµÄ¸ß×Ö½Ú
-	frame_info[frame_len++] = 0x01; 		//¹¹ÔìÊı¾İÇø³¤¶ÈµÄµÍ×Ö½Ú
-	frame_info[frame_len++] = cmd ; 			//¹¹ÔìÃüÁî×Ö 
+/*****************å¸§å›ºå®šé…ç½®ä¿¡æ¯**************************************/           
+	frame_info[frame_len++] = 0xFD ; 			//æ„é€ å¸§å¤´FD
+	frame_info[frame_len++] = 0x00 ; 			//æ„é€ æ•°æ®åŒºé•¿åº¦çš„é«˜å­—èŠ‚
+	frame_info[frame_len++] = 0x01; 		//æ„é€ æ•°æ®åŒºé•¿åº¦çš„ä½å­—èŠ‚
+	frame_info[frame_len++] = cmd ; 			//æ„é€ å‘½ä»¤å­— 
  
-/*******************·¢ËÍÖ¡ĞÅÏ¢***************************************/
+/*******************å‘é€å¸§ä¿¡æ¯***************************************/
 
 	uart3_send_buff(frame_info, frame_len);
   
@@ -126,34 +126,34 @@ static int xfs_send_cmd(uint8_t cmd)
 
 
 /**
-  * @brief  »ñµÃ×´Ì¬
+  * @brief  è·å¾—çŠ¶æ€
   * @param  
-  * @retval ×´Ì¬Âë
+  * @retval çŠ¶æ€ç 
   */
 int xfs_get_status(void)
 {
 	unsigned char rec_buf[8];
-	unsigned  char frame_info[8]; //¶¨ÒåµÄÎÄ±¾³¤¶È
+	unsigned  char frame_info[8]; //å®šä¹‰çš„æ–‡æœ¬é•¿åº¦
 	uint16_t frame_len = 0;
 	int timeout = XFS_RESPONSE_TIMEOUT;
 	
 	memset(rec_buf, 0, sizeof(rec_buf));
-/*****************Ö¡¹Ì¶¨ÅäÖÃĞÅÏ¢**************************************/           
-	frame_info[frame_len++] = 0xFD ; 			//¹¹ÔìÖ¡Í·FD
-	frame_info[frame_len++] = 0x00 ; 			//¹¹ÔìÊı¾İÇø³¤¶ÈµÄ¸ß×Ö½Ú
-	frame_info[frame_len++] = 0x01; 		//¹¹ÔìÊı¾İÇø³¤¶ÈµÄµÍ×Ö½Ú
-	frame_info[frame_len++] = XFS_CMD_STATUS ; 			//¹¹ÔìÃüÁî×Ö 
+/*****************å¸§å›ºå®šé…ç½®ä¿¡æ¯**************************************/           
+	frame_info[frame_len++] = 0xFD ; 			//æ„é€ å¸§å¤´FD
+	frame_info[frame_len++] = 0x00 ; 			//æ„é€ æ•°æ®åŒºé•¿åº¦çš„é«˜å­—èŠ‚
+	frame_info[frame_len++] = 0x01; 		//æ„é€ æ•°æ®åŒºé•¿åº¦çš„ä½å­—èŠ‚
+	frame_info[frame_len++] = XFS_CMD_STATUS ; 			//æ„é€ å‘½ä»¤å­— 
  
-/*******************·¢ËÍÖ¡ĞÅÏ¢***************************************/
+/*******************å‘é€å¸§ä¿¡æ¯***************************************/
 	uart3_send_buff(frame_info, frame_len);
 
-/*******************µÈ´ı½ÓÊÕ***************************************/
+/*******************ç­‰å¾…æ¥æ”¶***************************************/
 
 	while (--timeout)
 	{
 		delay_ms(1);
 
-     if(USART_GetFlagStatus(USART3,USART_FLAG_RXNE)!=RESET)//È·ÈÏÏÂÊÇ²»ÊÇ´®¿Ú1½ÓÊÕÖĞ¶Ï
+     if(USART_GetFlagStatus(USART3,USART_FLAG_RXNE)!=RESET)//ç¡®è®¤ä¸‹æ˜¯ä¸æ˜¯ä¸²å£1æ¥æ”¶ä¸­æ–­
      {
 	     rec_buf[0] =USART_ReceiveData(USART3);	   
 	      return  rec_buf[0];     
@@ -164,20 +164,20 @@ int xfs_get_status(void)
 	
 }
 /**
-  * @brief  ½øÈëË¯ÃßÄ£Ê½
+  * @brief  è¿›å…¥ç¡çœ æ¨¡å¼
   * @param  
-  * @retval 1£º³É¹¦
-  * @retval 0£ºÊ§°Ü
+  * @retval 1ï¼šæˆåŠŸ
+  * @retval 0ï¼šå¤±è´¥
   */
 int xfs_sleep(void)
 {
 	return xfs_send_cmd(XFS_CMD_SLEEP);
 }
 /**
-  * @brief  »½ĞÑ
+  * @brief  å”¤é†’
   * @param  
-  * @retval 1£º³É¹¦
-  * @retval 0£ºÊ§°Ü
+  * @retval 1ï¼šæˆåŠŸ
+  * @retval 0ï¼šå¤±è´¥
   */
 int xfs_wake_up(void)
 {
@@ -185,12 +185,12 @@ int xfs_wake_up(void)
 }
 
 /**
-  * @brief  ¿ªÊ¼ÓïÒô²¥±¨
-  * @param  data£ºÓïÒôÎÄ±¾
-  * @param  format:ÎÄ±¾±àÂë¸ñÊ½ 0-GB2312,1-GBK,2-BIG,3-UNICODE
-  * @param  wait_finish£ºÊÇ·ñµÈ´ıĞ¾Æ¬¿ÕÏĞ
-  * @retval 1£º³É¹¦
-  * @retval 0£ºÊ§°Ü
+  * @brief  å¼€å§‹è¯­éŸ³æ’­æŠ¥
+  * @param  dataï¼šè¯­éŸ³æ–‡æœ¬
+  * @param  format:æ–‡æœ¬ç¼–ç æ ¼å¼ 0-GB2312,1-GBK,2-BIG,3-UNICODE
+  * @param  wait_finishï¼šæ˜¯å¦ç­‰å¾…èŠ¯ç‰‡ç©ºé—²
+  * @retval 1ï¼šæˆåŠŸ
+  * @retval 0ï¼šå¤±è´¥
   */
 int xfs_voice_start(unsigned char *data, unsigned char format, int wait_finish)
 {
@@ -207,22 +207,22 @@ int xfs_voice_start(unsigned char *data, unsigned char format, int wait_finish)
 	//	while(xfs_get_status() != XFS_ACK_IDEL)
 	//		delay_ms(10);
 		
-	data_length =strlen((char*)data); 			//ĞèÒª·¢ËÍÎÄ±¾µÄ³¤¶È
+	data_length =strlen((char*)data); 			//éœ€è¦å‘é€æ–‡æœ¬çš„é•¿åº¦
 	frame_info = (unsigned char *)calloc((unsigned int)data_length, sizeof(unsigned char));
 	if(frame_info == NULL)
 		return -1;
 
-/*****************Ö¡¹Ì¶¨ÅäÖÃĞÅÏ¢**************************************/           
-	frame_info[frame_offset++] = 0xFD ; 			//¹¹ÔìÖ¡Í·FD
-	frame_info[frame_offset++] = (data_length>>8) & 0xFF; 			//¹¹ÔìÊı¾İÇø³¤¶ÈµÄ¸ß×Ö½Ú
-	frame_info[frame_offset++] = (data_length & 0xFF) + 2; 	  	//¹¹ÔìÊı¾İÇø³¤¶ÈµÄµÍ×Ö½Ú
-	frame_info[frame_offset++] = XFS_CMD_VOICE_START ; 		    	//¹¹ÔìÃüÁî×Ö£ººÏ³É²¥·ÅÃüÁî		 		 
-	frame_info[frame_offset++] = format;                        //ÎÄ±¾±àÂë¸ñÊ½£ºGBK 
+/*****************å¸§å›ºå®šé…ç½®ä¿¡æ¯**************************************/           
+	frame_info[frame_offset++] = 0xFD ; 			//æ„é€ å¸§å¤´FD
+	frame_info[frame_offset++] = (data_length>>8) & 0xFF; 			//æ„é€ æ•°æ®åŒºé•¿åº¦çš„é«˜å­—èŠ‚
+	frame_info[frame_offset++] = (data_length & 0xFF) + 2; 	  	//æ„é€ æ•°æ®åŒºé•¿åº¦çš„ä½å­—èŠ‚
+	frame_info[frame_offset++] = XFS_CMD_VOICE_START ; 		    	//æ„é€ å‘½ä»¤å­—ï¼šåˆæˆæ’­æ”¾å‘½ä»¤		 		 
+	frame_info[frame_offset++] = format;                        //æ–‡æœ¬ç¼–ç æ ¼å¼ï¼šGBK 
  
-/*******************·¢ËÍÖ¡ĞÅÏ¢***************************************/		  
+/*******************å‘é€å¸§ä¿¡æ¯***************************************/		  
 	memcpy(&frame_info[5], data, data_length);
 	frame_offset += data_length;
-//	ptrUSART->Send(frame_info, frame_offset);//·¢ËÍÖ¡ÅäÖÃ
+//	ptrUSART->Send(frame_info, frame_offset);//å‘é€å¸§é…ç½®
 	uart3_send_buff(frame_info, frame_offset);
 //	while (ptrUSART->GetTxCount() < frame_offset);
 	ack = wait_response(XFS_ACK_CMD_RIGHT, XFS_RESPONSE_TIMEOUT);
@@ -233,30 +233,30 @@ int xfs_voice_start(unsigned char *data, unsigned char format, int wait_finish)
 	return ack;
 }
 /**
-  * @brief  Í£Ö¹²¥±¨
+  * @brief  åœæ­¢æ’­æŠ¥
   * @param  
-  * @retval 1£º³É¹¦
-  * @retval 0£ºÊ§°Ü
+  * @retval 1ï¼šæˆåŠŸ
+  * @retval 0ï¼šå¤±è´¥
   */
 int xfs_voice_stop(void)
 {
 	return xfs_send_cmd(XFS_CMD_VOICE_STOP);
 }
 /**
-  * @brief  ÔİÍ£²¥±¨
+  * @brief  æš‚åœæ’­æŠ¥
   * @param  
-  * @retval 1£º³É¹¦
-  * @retval 0£ºÊ§°Ü
+  * @retval 1ï¼šæˆåŠŸ
+  * @retval 0ï¼šå¤±è´¥
   */
 int xfs_voice_pause(void)
 {
 	return xfs_send_cmd(XFS_CMD_VOICE_PAUSE);
 }
 /**
-  * @brief  ¼ÌĞø²¥±¨
+  * @brief  ç»§ç»­æ’­æŠ¥
   * @param  
-  * @retval 1£º³É¹¦
-  * @retval 0£ºÊ§°Ü
+  * @retval 1ï¼šæˆåŠŸ
+  * @retval 0ï¼šå¤±è´¥
   */
 int xfs_voice_restore(void)
 {
@@ -266,19 +266,19 @@ int xfs_voice_restore(void)
 
 
 /**
-  * @brief  ·¢ËÍÎÄ±¾µ½»º´æÇø
-  * @param  data£ºÎÄ±¾Êı¾İ
+  * @brief  å‘é€æ–‡æœ¬åˆ°ç¼“å­˜åŒº
+  * @param  dataï¼šæ–‡æœ¬æ•°æ®
   * @param  cache_num (0~15)
-  * @retval 1£º³É¹¦
-  * @retval 0£ºÊ§°Ü
-  * @note  »º´æ¿Õ¼ä×Ü¹²4K,¹²·Ö16Çø,Ã¿¸öÇø256×Ö½Ú
-					Éè±¾´ÎÆğÊ¼»º´æÇø¶Î=X(0<=X<=15),Ôò±¾´Î·¢ËÍµÄÎÄ±¾³¤¶È²»ÄÜ´óÓÚ(16-X)*256×Ö½Ú£¬¶àÓàµÄÎÄ±¾½«¶ªÆú
-					ÓÃ»§ÔÚ²¥·Å»º´æÎÄ±¾Ç°£¬¿É¶à´Î·¢ËÍ»º´æÃüÁî£¬µ«ÇĞ¼ÇºóÀ´·¢ËÍµÄÎÄ±¾²»ÄÜ²¿·Ö¸²¸Ç»òÈ«²¿¸²¸ÇÖ®Ç°µÄÎÄ±¾£¬
-					·ñÔò²»±£Ö¤²¥·ÅµÄÕıÈ·ĞÔ
+  * @retval 1ï¼šæˆåŠŸ
+  * @retval 0ï¼šå¤±è´¥
+  * @note  ç¼“å­˜ç©ºé—´æ€»å…±4K,å…±åˆ†16åŒº,æ¯ä¸ªåŒº256å­—èŠ‚
+					è®¾æœ¬æ¬¡èµ·å§‹ç¼“å­˜åŒºæ®µ=X(0<=X<=15),åˆ™æœ¬æ¬¡å‘é€çš„æ–‡æœ¬é•¿åº¦ä¸èƒ½å¤§äº(16-X)*256å­—èŠ‚ï¼Œå¤šä½™çš„æ–‡æœ¬å°†ä¸¢å¼ƒ
+					ç”¨æˆ·åœ¨æ’­æ”¾ç¼“å­˜æ–‡æœ¬å‰ï¼Œå¯å¤šæ¬¡å‘é€ç¼“å­˜å‘½ä»¤ï¼Œä½†åˆ‡è®°åæ¥å‘é€çš„æ–‡æœ¬ä¸èƒ½éƒ¨åˆ†è¦†ç›–æˆ–å…¨éƒ¨è¦†ç›–ä¹‹å‰çš„æ–‡æœ¬ï¼Œ
+					å¦åˆ™ä¸ä¿è¯æ’­æ”¾çš„æ­£ç¡®æ€§
   */
 int xfs_send_to_cache(unsigned char *data, unsigned char cache_num)
 {
-	unsigned char *frame_info = NULL; //¶¨ÒåµÄÎÄ±¾³¤¶È
+	unsigned char *frame_info = NULL; //å®šä¹‰çš„æ–‡æœ¬é•¿åº¦
 	unsigned short data_length, frame_offset = 0;  
 	unsigned char ack = 0;
 	
@@ -286,23 +286,23 @@ int xfs_send_to_cache(unsigned char *data, unsigned char cache_num)
 		return -1;
 	if(cache_num >= 16)
 		return -1;
-	data_length = strlen((char*)data); 			//ĞèÒª·¢ËÍÎÄ±¾µÄ³¤¶È
+	data_length = strlen((char*)data); 			//éœ€è¦å‘é€æ–‡æœ¬çš„é•¿åº¦
 	if(data_length > (16-cache_num)*256)
 		return -1;
 	frame_info = (unsigned char *)calloc((unsigned int)data_length, sizeof(unsigned char));
 	if(frame_info == NULL)
 		return -1;
-/*****************Ö¡¹Ì¶¨ÅäÖÃĞÅÏ¢**************************************/           
-	frame_info[frame_offset++] = 0xFD ; 			//¹¹ÔìÖ¡Í·FD
-	frame_info[frame_offset++] = (data_length>>8) & 0xFF; 			//¹¹ÔìÊı¾İÇø³¤¶ÈµÄ¸ß×Ö½Ú
-	frame_info[frame_offset++] = (data_length & 0xFF) + 2; 		//¹¹ÔìÊı¾İÇø³¤¶ÈµÄµÍ×Ö½Ú
-	frame_info[frame_offset++] = XFS_CMD_SEND_TO_CACHE ; 			//¹¹ÔìÃüÁî×Ö	 
-	frame_info[frame_offset++] = cache_num;       //ÎÄ±¾±àÂë¸ñÊ½£ºGBK 
+/*****************å¸§å›ºå®šé…ç½®ä¿¡æ¯**************************************/           
+	frame_info[frame_offset++] = 0xFD ; 			//æ„é€ å¸§å¤´FD
+	frame_info[frame_offset++] = (data_length>>8) & 0xFF; 			//æ„é€ æ•°æ®åŒºé•¿åº¦çš„é«˜å­—èŠ‚
+	frame_info[frame_offset++] = (data_length & 0xFF) + 2; 		//æ„é€ æ•°æ®åŒºé•¿åº¦çš„ä½å­—èŠ‚
+	frame_info[frame_offset++] = XFS_CMD_SEND_TO_CACHE ; 			//æ„é€ å‘½ä»¤å­—	 
+	frame_info[frame_offset++] = cache_num;       //æ–‡æœ¬ç¼–ç æ ¼å¼ï¼šGBK 
  
-/*******************·¢ËÍÖ¡ĞÅÏ¢***************************************/		  
+/*******************å‘é€å¸§ä¿¡æ¯***************************************/		  
 	memcpy(&frame_info[frame_offset], data, data_length);
 	frame_offset += data_length;
-//	ptrUSART->Send(frame_info,frame_offset);//·¢ËÍÖ¡ÅäÖÃ
+//	ptrUSART->Send(frame_info,frame_offset);//å‘é€å¸§é…ç½®
 //	while (ptrUSART->GetTxCount() < frame_offset);
 	uart3_send_buff(frame_info, frame_offset);
 	ack = wait_response(XFS_ACK_CMD_RIGHT, XFS_RESPONSE_TIMEOUT);
@@ -314,11 +314,11 @@ int xfs_send_to_cache(unsigned char *data, unsigned char cache_num)
 }
 
 /**
-  * @brief  ²¥·Å»º´æÄÚÈİ
+  * @brief  æ’­æ”¾ç¼“å­˜å†…å®¹
   * @param  num(1~15)
   * @param  format:0-GB2312,1-GBK,2-BIG,3-UNICODE
-  * @retval 1£º³É¹¦
-  * @retval 0£ºÊ§°Ü
+  * @retval 1ï¼šæˆåŠŸ
+  * @retval 0ï¼šå¤±è´¥
   */
 int xfs_paly_from_cache(unsigned char num, unsigned char format)
 {
@@ -328,22 +328,22 @@ int xfs_paly_from_cache(unsigned char num, unsigned char format)
 	if(format > XFS_FORMAT_UNICODE || num > 15)
 	return -1;
 
-/*****************Ö¡¹Ì¶¨ÅäÖÃĞÅÏ¢**************************************/           
-	frame_info[frame_len++] = 0xFD ; 			//¹¹ÔìÖ¡Í·FD
-	frame_info[frame_len++] = 0x00 ; 			//¹¹ÔìÊı¾İÇø³¤¶ÈµÄ¸ß×Ö½Ú
-	frame_info[frame_len++] = 0x02; 		//¹¹ÔìÊı¾İÇø³¤¶ÈµÄµÍ×Ö½Ú
-	frame_info[frame_len++] = XFS_CMD_PLAY_FROM_CACHE ; 			//¹¹ÔìÃüÁî×Ö 
- 	frame_info[frame_len++] = (num << 4 & 0xF0) | (format & 0x0F); 			//²ÎÊı£º¸ßËÄÎ»-ÖØ¸´²¥·Å´ÎÊı£¬µÍËÄÎ»-ÎÄ±¾±àÂë¸ñÊ½
+/*****************å¸§å›ºå®šé…ç½®ä¿¡æ¯**************************************/           
+	frame_info[frame_len++] = 0xFD ; 			//æ„é€ å¸§å¤´FD
+	frame_info[frame_len++] = 0x00 ; 			//æ„é€ æ•°æ®åŒºé•¿åº¦çš„é«˜å­—èŠ‚
+	frame_info[frame_len++] = 0x02; 		//æ„é€ æ•°æ®åŒºé•¿åº¦çš„ä½å­—èŠ‚
+	frame_info[frame_len++] = XFS_CMD_PLAY_FROM_CACHE ; 			//æ„é€ å‘½ä»¤å­— 
+ 	frame_info[frame_len++] = (num << 4 & 0xF0) | (format & 0x0F); 			//å‚æ•°ï¼šé«˜å››ä½-é‡å¤æ’­æ”¾æ¬¡æ•°ï¼Œä½å››ä½-æ–‡æœ¬ç¼–ç æ ¼å¼
 
-/*******************·¢ËÍÖ¡ĞÅÏ¢***************************************/
+/*******************å‘é€å¸§ä¿¡æ¯***************************************/
 	uart3_send_buff(frame_info, frame_len);
 	return wait_response(XFS_ACK_CMD_RIGHT, XFS_RESPONSE_TIMEOUT);
 
 }
 /*
-  * @brief  ´òÓ¡Êı¾İ
-  * @param  buf    ´òÓ¡Êı×é
-            len    ´òÓ¡³¤¶È
+  * @brief  æ‰“å°æ•°æ®
+  * @param  buf    æ‰“å°æ•°ç»„
+            len    æ‰“å°é•¿åº¦
   * @note     
   * @Date:  2017.7.10
   * @updatge:2017.7.10
@@ -362,30 +362,30 @@ static void dump(const uint8_t *buf, int len)
 
 
 /**
-  * @brief  ÓïÒôÊ¶±ğ
-  * @param  result[out]: Ê¶±ğ½á¹û
-  * @param  waittime[in]: ³¬Ê±Ê±¼ä
-  * @retval >0£º   ³É¹¦
-  * @retval 0 £º  Ê§°Ü
-  * @note £º ¿¼ÉúÔÚ´Ëº¯ÊıÊµÏÖÓïÒôÊ¶±ğ¹¦ÄÜ  Ö¸Õë*result·µ»Ø Ê¶±ğ½á¹ûµÄ¹Ø¼ü´úÂë     
-                                           waittime    ´«ÈëµÈ´ıÊ±¼ä  £¬±ÈÈç0.5ÃëÄÚÊ¶±ğÓïÒô   waittime=500
+  * @brief  è¯­éŸ³è¯†åˆ«
+  * @param  result[out]: è¯†åˆ«ç»“æœ
+  * @param  waittime[in]: è¶…æ—¶æ—¶é—´
+  * @retval >0ï¼š   æˆåŠŸ
+  * @retval 0 ï¼š  å¤±è´¥
+  * @note ï¼š è€ƒç”Ÿåœ¨æ­¤å‡½æ•°å®ç°è¯­éŸ³è¯†åˆ«åŠŸèƒ½  æŒ‡é’ˆ*resultè¿”å› è¯†åˆ«ç»“æœçš„å…³é”®ä»£ç      
+                                           waittime    ä¼ å…¥ç­‰å¾…æ—¶é—´  ï¼Œæ¯”å¦‚0.5ç§’å†…è¯†åˆ«è¯­éŸ³   waittime=500
                                 
-             xfs5152ceÄ£¿éÊÕ·¢Ê¹ÓÃµÄ´®¿ÚÎª  USART3
+             xfs5152ceæ¨¡å—æ”¶å‘ä½¿ç”¨çš„ä¸²å£ä¸º  USART3
 
-             ÓïÒôÊ¶±ğ¹ı³ÌÈçÏÂ:
-                       MCU´®¿Ú·¢ËÍÃüÁî       FD 00 01 10  ¸øxfs5152
+             è¯­éŸ³è¯†åˆ«è¿‡ç¨‹å¦‚ä¸‹:
+                       MCUä¸²å£å‘é€å‘½ä»¤       FD 00 01 10  ç»™xfs5152
                              |
                              |
                              |
-                       ¶Ô×ÅÂó¿Ë·çËµ»°
+                       å¯¹ç€éº¦å…‹é£è¯´è¯
 						     |
 							 |
 							 |                            
-                          µÈ´ı½ÓÊÕ      FC 00 2A cmd    
+                          ç­‰å¾…æ¥æ”¶      FC 00 2A cmd    
                              |
                              |
                              |
-                           ¹Ø¼üÂë      Óëcmd_word_list[]±íÒ»Ò»¶ÔÓ¦
+                           å…³é”®ç       ä¸cmd_word_list[]è¡¨ä¸€ä¸€å¯¹åº”
                          
   **/
 int xfs_recognize(unsigned char *result, unsigned int waittime)
@@ -406,8 +406,8 @@ int xfs_recognize(unsigned char *result, unsigned int waittime)
    }
 	DBG_R_E("Succeed: XFS_CMD_RECOGNIZE_START");
 
-	/*ÒÔÏÂ²¿·ÖÓÉÑ¡ÊÖ²¹³ä*/
-	//¿Õ°×²¿·ÖÆğÊ¼========>>
+	/*ä»¥ä¸‹éƒ¨åˆ†ç”±é€‰æ‰‹è¡¥å……*/
+	//ç©ºç™½éƒ¨åˆ†èµ·å§‹========>>
 
 	
 	
@@ -459,7 +459,7 @@ int xfs_recognize(unsigned char *result, unsigned int waittime)
 	 
 	 
 	
-	//¿Õ°×²¿·Ö½áÊø========<<
+	//ç©ºç™½éƒ¨åˆ†ç»“æŸ========<<
 
 	ERROR_OUT:
 	if(xfs_send_cmd(XFS_CMD_RECOGNIZE_STOP)  != 1){
@@ -485,7 +485,7 @@ void xfs_delete_number(void)
 {
 	 char str_call[50]="";
 	  num_fifo_out();
-	  sprintf(str_call,"Çë%dºÅµ½´°¿Ú£¬ID¿¨Î²ºÅºóÈıÎ»Îª%x ,%x ,%x ",number_read,num_id[number_read-1][5],num_id[number_read-1][6],num_id[number_read-1][7]);
+	  sprintf(str_call,"è¯·%då·åˆ°çª—å£ï¼ŒIDå¡å°¾å·åä¸‰ä½ä¸º%x ,%x ,%x ",number_read,num_id[number_read-1][5],num_id[number_read-1][6],num_id[number_read-1][7]);
 	  DBG_B_INFO("[ %x %x %x]",num_id[number_read-1][5],num_id[number_read-1][6],num_id[number_read-1][7]);
 
 	  xfs_voice_start((unsigned char *)str_call, XFS_FORMAT_GBK, 1);
@@ -495,17 +495,17 @@ void xfs_delete_number(void)
 
 void xfs_add_number(void)
 {
-	xfs_voice_start((unsigned char *)"Ë¢¿¨³É¹¦", XFS_FORMAT_GBK, 1);
+	xfs_voice_start((unsigned char *)"åˆ·å¡æˆåŠŸ", XFS_FORMAT_GBK, 1);
 }
 
 
 void xfs_save_id(void)
 {
 	
-	xfs_voice_start((unsigned char *)"ÕıÔÚ´æ´¢£¬ÇëÎğÒÆ¿ª´Å¿¨", XFS_FORMAT_GBK, 1);
-	xfs_voice_start((unsigned char *)"´æ´¢Íê³É£¡", XFS_FORMAT_GBK, 1);
-	xfs_voice_start((unsigned char *)"´Å¿¨ÒÑ´æÔÚ", XFS_FORMAT_GBK, 1);
-	xfs_voice_start((unsigned char *)"¿Õ¼äÒÑÂú", XFS_FORMAT_GBK, 1);
+	xfs_voice_start((unsigned char *)"æ­£åœ¨å­˜å‚¨ï¼Œè¯·å‹¿ç§»å¼€ç£å¡", XFS_FORMAT_GBK, 1);
+	xfs_voice_start((unsigned char *)"å­˜å‚¨å®Œæˆï¼", XFS_FORMAT_GBK, 1);
+	xfs_voice_start((unsigned char *)"ç£å¡å·²å­˜åœ¨", XFS_FORMAT_GBK, 1);
+	xfs_voice_start((unsigned char *)"ç©ºé—´å·²æ»¡", XFS_FORMAT_GBK, 1);
 }
 
 
@@ -517,7 +517,7 @@ void xfs_recognize_test(void)
 	if(xfs_recognize(&result, 1000) == 1)
 	{
 		DBG_B_INFO("recognition failed!");
-		xfs_voice_start((unsigned char *)"ÓïÒôÊ¶±ğÊ§°Ü", XFS_FORMAT_GBK, 1);
+		xfs_voice_start((unsigned char *)"è¯­éŸ³è¯†åˆ«å¤±è´¥", XFS_FORMAT_GBK, 1);
 		return;
 	}
 

@@ -11,13 +11,13 @@
 #include "app_pwd.h"
 #include "bsp_flash.h"
 #include "kfifo.h"
-volatile char number_write=0; //½ÓÊÕµ½µÄÈËÊıÊı¾İ
+volatile char number_write=0; //æ¥æ”¶åˆ°çš„äººæ•°æ•°æ®
 volatile char number_read=0;
-volatile char number_show=0;//ÏÔÊ¾µÄÈËÊıÊı¾İ = ½ÓÊÕµ½µÄÈËÊıÊı¾İ -  ½ĞºÅµÄÊı¾İ
-volatile char number_get=0;//HC595 ÏÔÊ¾µÄÈËÊıÊı¾İ
+volatile char number_show=0;//æ˜¾ç¤ºçš„äººæ•°æ•°æ® = æ¥æ”¶åˆ°çš„äººæ•°æ•°æ® -  å«å·çš„æ•°æ®
+volatile char number_get=0;//HC595 æ˜¾ç¤ºçš„äººæ•°æ•°æ®
 unsigned char id_card[ID_CARD_NUMBER][ID_CARD_PWD_LEN];
-unsigned char idCardPwd_offset = 0;//ÃÜÂë±£´æÔÚ»º´æÖĞµÄÎ»ÖÃ
-unsigned char curIdCardPwd[ID_CARD_PWD_LEN];//µ±Ç°ÊäÈëµÄÃÜÂë
+unsigned char idCardPwd_offset = 0;//å¯†ç ä¿å­˜åœ¨ç¼“å­˜ä¸­çš„ä½ç½®
+unsigned char curIdCardPwd[ID_CARD_PWD_LEN];//å½“å‰è¾“å…¥çš„å¯†ç 
 unsigned char num_id[NUM_MAX][NUM_STR_LENGTH];
 unsigned char num_fifo_buffer[NUM_MAX*NUM_STR_LENGTH];
 
@@ -35,8 +35,8 @@ kfifo_t num_fifo = {"numfifo",NUM_MAX*NUM_STR_LENGTH,num_fifo_buffer,0,0};
 
 
 /*
-  * @brief  isRightPwd_IdCard ÅĞ¶ÏID¿¨ÃÜÂëÊÇ·ñÕıÈ·
-  * @param  ·µ»ØbuffµÄ Ö¸Õë
+  * @brief  isRightPwd_IdCard åˆ¤æ–­IDå¡å¯†ç æ˜¯å¦æ­£ç¡®
+  * @param  è¿”å›buffçš„ æŒ‡é’ˆ
   * @note           
   * @Date:2018.7.27
   * @author:zhao
@@ -83,8 +83,8 @@ int isRight_Pwd_IdCard(unsigned char * ret_buff)
 /*
   * @brief  paramInit
   * @param  none
-  * @note  1.²ÎÊı³õÊ¼»¯
-           2.ÊÇ·ñ³õ´ÎÉÏµç  µÚÒ»´ÎÉÏµç ÖØÖÃÃÜÂë 
+  * @note  1.å‚æ•°åˆå§‹åŒ–
+           2.æ˜¯å¦åˆæ¬¡ä¸Šç”µ  ç¬¬ä¸€æ¬¡ä¸Šç”µ é‡ç½®å¯†ç  
   * @Date:2018.6.19
   * @author:zhao
   * @return:none
@@ -122,23 +122,23 @@ void param_Init(void)
 		bsp_flash_write(EEP_ID_CARD_PWD_START_ADDRESS, (unsigned char *)id_card[0], NumByteToWrite);
 
 
-		//-------´Ë¿¨ÒÑ¾­¿ÕÁË£¬ÇëÌí¼ÓÌí¼Ó--------//
+		//-------æ­¤å¡å·²ç»ç©ºäº†ï¼Œè¯·æ·»åŠ æ·»åŠ --------//
 	}
 }
 
 
 /*
-  * @brief  read_DigitPwd ¶ÁÈ¡Êı×ÖÃÜÂë
+  * @brief  read_DigitPwd è¯»å–æ•°å­—å¯†ç 
   * @param  none
-  * @note  1.²ÎÊı³õÊ¼»¯
-           2.·ÖÅäÄÚ´æ calloc(128,sizeof(char))
-           3.»ñÈ¡µ±Ç°»º´æÎ»ÖÃ
-           4.digitPwd»º´æĞ´FF
-           5.½«digitPwd»º´æĞ´Èë debug_buff  ´òÓ¡ ÃÜÂë  strcat ´®Áª×Ö·û´®
-           6.free ÊÍ·ÅÄÚ´æ
+  * @note  1.å‚æ•°åˆå§‹åŒ–
+           2.åˆ†é…å†…å­˜ calloc(128,sizeof(char))
+           3.è·å–å½“å‰ç¼“å­˜ä½ç½®
+           4.digitPwdç¼“å­˜å†™FF
+           5.å°†digitPwdç¼“å­˜å†™å…¥ debug_buff  æ‰“å° å¯†ç   strcat ä¸²è”å­—ç¬¦ä¸²
+           6.free é‡Šæ”¾å†…å­˜
   * @Date:2018.6.20
   * @author:zhao
-  * @return:(unsigned char **)digitPwd  Ö¸ÕëµØÖ·
+  * @return:(unsigned char **)digitPwd  æŒ‡é’ˆåœ°å€
 */
 unsigned char **read_IdCardPwd(void)
 {	
@@ -156,12 +156,12 @@ unsigned char **read_IdCardPwd(void)
 
 
 /*
-  * @brief  ´æ´¢id¿¨ÃÜÂë
+  * @brief  å­˜å‚¨idå¡å¯†ç 
   * @param  void
-  * @note   ´æ´¢ID¿¨³ÌĞò
-               1.³É¹¦ÓïÒô²¥±¨´æ´¢³É¹¦
-               2.Ê§°ÜÓïÒô²¥±¨´æ´¢Ê§°Ü
-               3.¿¨Æ¬´æÔÚ²¥±¨ ´Ë¿¨ÒÑ´æÔÚ
+  * @note   å­˜å‚¨IDå¡ç¨‹åº
+               1.æˆåŠŸè¯­éŸ³æ’­æŠ¥å­˜å‚¨æˆåŠŸ
+               2.å¤±è´¥è¯­éŸ³æ’­æŠ¥å­˜å‚¨å¤±è´¥
+               3.å¡ç‰‡å­˜åœ¨æ’­æŠ¥ æ­¤å¡å·²å­˜åœ¨
   * @Date:  2017.7.10
   * @updatge:2017.7.10
   * @author:zhao
@@ -188,7 +188,7 @@ void save_id_key(void)
 		  DBG_B_INFO("[%x %x %x %x %x %x %x %x ]cnt:%d",buf[cnt][0],buf[cnt][1],buf[cnt][2],buf[cnt][3],buf[cnt][4],buf[cnt][5],buf[cnt][6],buf[cnt][7],cnt);
 		  DBG_B_INFO("false1 ");
           change_pwd_flag(PWD_IDLE_FLAG);
-		  xfs_voice_start((unsigned char *)"´æ´¢Ê§°Ü", XFS_FORMAT_GBK, 1);
+		  xfs_voice_start((unsigned char *)"å­˜å‚¨å¤±è´¥", XFS_FORMAT_GBK, 1);
 		  return ;		
 		}
 		if((cnt>=1)&&(memcmp(buf[cnt], buf[cnt-1], 8) != 0))
@@ -197,7 +197,7 @@ void save_id_key(void)
 			DBG_B_INFO("[%x %x %x %x %x %x %x %x ]",buf[cnt][0],buf[cnt][1],buf[cnt][2],buf[cnt][3],buf[cnt][4],buf[cnt][5],buf[cnt][6],buf[cnt][7]);
 			DBG_B_INFO("false2 ");
 			change_pwd_flag(PWD_IDLE_FLAG);
-			xfs_voice_start((unsigned char *)"´æ´¢Ê§°Ü", XFS_FORMAT_GBK, 1);
+			xfs_voice_start((unsigned char *)"å­˜å‚¨å¤±è´¥", XFS_FORMAT_GBK, 1);
 
 	    return ;
 		
@@ -206,7 +206,7 @@ void save_id_key(void)
 
 
 
-    //¼ÆËãÊÇ·ñ´æÔÚÓÚ id_card Êı×éÖĞ
+    //è®¡ç®—æ˜¯å¦å­˜åœ¨äº id_card æ•°ç»„ä¸­
 	for(cnt=0; cnt< ID_CARD_NUMBER; cnt++)
 	{
 		if(memcmp(buf[0], &id_card[cnt][0], ID_CARD_PWD_LEN) == 0)
@@ -216,9 +216,9 @@ void save_id_key(void)
 	}
    if(cnt<ID_CARD_NUMBER)
    {
-   	DBG_B_INFO("¸Ã¿¨ÒÑ¾­´æÔÚ");
+   	DBG_B_INFO("è¯¥å¡å·²ç»å­˜åœ¨");
 	change_pwd_flag(PWD_IDLE_FLAG);
-	xfs_voice_start((unsigned char *)"´Ë¿¨ÒÑ¾­´æÔÚ", XFS_FORMAT_GBK, 1);
+	xfs_voice_start((unsigned char *)"æ­¤å¡å·²ç»å­˜åœ¨", XFS_FORMAT_GBK, 1);
     idCardPwd_offset=cnt;
 	data_len = 1;
 	bsp_flash_erase(EEP_ID_CARD_PWD_OFFSET_ADDRESS, data_len);
@@ -242,7 +242,7 @@ void save_id_key(void)
 	bsp_flash_write(EEP_ID_CARD_PWD_START_ADDRESS,(unsigned char *)&id_card[0][0], data_len);
   
     change_pwd_flag(PWD_IDLE_FLAG);
-	xfs_voice_start((unsigned char *)"´æ´¢³É¹¦", XFS_FORMAT_GBK, 1);
+	xfs_voice_start((unsigned char *)"å­˜å‚¨æˆåŠŸ", XFS_FORMAT_GBK, 1);
     DBG_B_INFO("OK");
 	
     return ;
@@ -251,7 +251,7 @@ void save_id_key(void)
 
 
 /*
-  * @brief  app_pwd_add ÅĞ¶ÏID¿¨ÃÜÂëÊÇ·ñÕıÈ·
+  * @brief  app_pwd_add åˆ¤æ–­IDå¡å¯†ç æ˜¯å¦æ­£ç¡®
   * @param  none
   * @note           
   * @Date:2018.7.27
@@ -271,15 +271,15 @@ void app_pwd_add(void)
 	switch(status)
 	{
 		case PWD_SUCCESS:
-		DBG_B_INFO("Ë¢¿¨³É¹¦");
+		DBG_B_INFO("åˆ·å¡æˆåŠŸ");
 	    DBG_B_INFO("[%x %x %x %x %x %x %x %x ]",read_buff[0],read_buff[1],read_buff[2],read_buff[3],read_buff[4],read_buff[5],read_buff[6],read_buff[7]);
 		buzzerOpen();num_fifo_in();p_state1=p_add;break;
 		case PWD_ERRPR_LF:
-		//DBG_B_INFO("Ã»ÓĞ´Å¿¨");
+		//DBG_B_INFO("æ²¡æœ‰ç£å¡");
 		break;
 		case PWD_ERROR:
-		//DBG_B_INFO("ÃÜÂë´íÎó");
-		xfs_voice_start((unsigned char *)"ÎŞĞ§¿¨", XFS_FORMAT_GBK, 1);
+		//DBG_B_INFO("å¯†ç é”™è¯¯");
+		xfs_voice_start((unsigned char *)"æ— æ•ˆå¡", XFS_FORMAT_GBK, 1);
 		break;
 		default:break;
 	}
@@ -288,7 +288,7 @@ void app_pwd_add(void)
 
 
 /*
-  * @brief  num_fifo_in ÈËÊı½ø¶ÓÁĞ
+  * @brief  num_fifo_in äººæ•°è¿›é˜Ÿåˆ—
   * @param  none
   * @note           
   * @Date:2018.8.22
@@ -335,7 +335,7 @@ void num_fifo_in(void)
 }
 
 /*
-  * @brief  num_fifo_out ÈËÊı³ö¶ÓÁĞ
+  * @brief  num_fifo_out äººæ•°å‡ºé˜Ÿåˆ—
   * @param  none
   * @note           
   * @Date:2018.8.22
@@ -377,7 +377,7 @@ void num_fifo_out(void)
 
 
 /*
-  * @brief  get_pwd_flag »ñÈ¡Ë¢¿¨×´Ì¬
+  * @brief  get_pwd_flag è·å–åˆ·å¡çŠ¶æ€
   * @param  none
   * @note   #define PWD_IDLE_FLAG     1
 			#define PWD_RUN_FLAG      2
@@ -394,13 +394,13 @@ uint8_t get_pwd_flag(void)
 
 
 /*
-  * @brief  change_pwd_flag ×ª»»Ë¢¿¨×´Ì¬
+  * @brief  change_pwd_flag è½¬æ¢åˆ·å¡çŠ¶æ€
   * @param  newflag (PWD_IDLE_FLAG    PWD_RUN_FLAG  PWD_OVER_FLAG   PWD_WRITE_FLAG)
   * @note  
-             1 PWD_IDLE_FLAG   ¡ª¡ª¡ª¡ª>     PWD_RUN_FLAG
-             2 PWD_RUN_FLAG    ¡ª¡ª¡ª¡ª>     PWD_IDLE_FLAG
-             3 PWD_IDLE_FLAG   ¡ª¡ª¡ª¡ª>     PWD_WRITE_FLAG
-             4 PWD_WRITE_FLAG  ¡ª¡ª¡ª¡ª>     PWD_IDLE_FLAG
+             1 PWD_IDLE_FLAG   â€”â€”â€”â€”>     PWD_RUN_FLAG
+             2 PWD_RUN_FLAG    â€”â€”â€”â€”>     PWD_IDLE_FLAG
+             3 PWD_IDLE_FLAG   â€”â€”â€”â€”>     PWD_WRITE_FLAG
+             4 PWD_WRITE_FLAG  â€”â€”â€”â€”>     PWD_IDLE_FLAG
   * @Date:2018.7.27
   * @author:zhao
   * @return:
@@ -414,24 +414,24 @@ void change_pwd_flag(uint8_t newflag)
 
     if((newflag==PWD_RUN_FLAG)&&(last_flags.VAL==PWD_IDLE_FLAG))
     {
-        DBG_B_INFO("¿ÕÏĞµ½Ë¢¿¨ ");
+        DBG_B_INFO("ç©ºé—²åˆ°åˆ·å¡ ");
      	led_disable();
     }
     else if((newflag==PWD_IDLE_FLAG)&&(last_flags.VAL==PWD_RUN_FLAG))
     {
         led_enable();
-		DBG_B_INFO("Ë¢¿¨µ½¿ÕÏĞ ");
+		DBG_B_INFO("åˆ·å¡åˆ°ç©ºé—² ");
     }
 	else if((newflag==PWD_WRITE_FLAG)&&(last_flags.VAL==PWD_IDLE_FLAG))
 	{
-	    DBG_B_INFO("¿ÕÏĞµ½Ğ´ĞÂ¿¨ ");
+	    DBG_B_INFO("ç©ºé—²åˆ°å†™æ–°å¡ ");
 		led_disable();
 
 	}
 	else if((newflag==PWD_IDLE_FLAG)&&(last_flags.VAL==PWD_WRITE_FLAG))
 	{
       led_enable();
-      DBG_B_INFO("Ğ´ĞÂ¿¨µ½¿ÕÏĞ ");
+      DBG_B_INFO("å†™æ–°å¡åˆ°ç©ºé—² ");
 		
 	}
 }
@@ -448,7 +448,7 @@ void change_pwd_flag(uint8_t newflag)
 void PWD_RUN(void)
 {
 
-	xfs_voice_start((unsigned char *)"ÇëË¢¿¨", XFS_FORMAT_GBK, 1);
+	xfs_voice_start((unsigned char *)"è¯·åˆ·å¡", XFS_FORMAT_GBK, 1);
 
 	change_pwd_flag(PWD_RUN_FLAG);
 	
@@ -467,14 +467,14 @@ void PWD_IDLE(void)
 {
 
 
-	xfs_voice_start((unsigned char *)"Ë¢¿¨½áÊø", XFS_FORMAT_GBK, 1);
+	xfs_voice_start((unsigned char *)"åˆ·å¡ç»“æŸ", XFS_FORMAT_GBK, 1);
 
 	change_pwd_flag(PWD_IDLE_FLAG);
 
 }
 
 /*
-  * @brief  pwd_task ÃÜÂëÊ¶±ğ½ø³Ì
+  * @brief  pwd_task å¯†ç è¯†åˆ«è¿›ç¨‹
   * @param  none
   * @note           
   * @Date:2018.7.27

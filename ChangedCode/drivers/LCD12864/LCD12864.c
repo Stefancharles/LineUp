@@ -775,7 +775,7 @@ void show_logo(void)
 	
 
   lcd_disp_full_img(newLandEduLogo);
-	delay_ms(1000);
+  delay_ms(1000);
  
 }
 /*

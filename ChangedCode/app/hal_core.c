@@ -37,7 +37,7 @@ void NVIC_Priority_Group_Configuration(void)
 
 /*
   * @brief  rtc_update_notify
-  * @param  uint32_t rtc_counter_val  rtc¼ÆÊıÆ÷Öµ
+  * @param  uint32_t rtc_counter_val  rtcè®¡æ•°å™¨å€¼
   * @note        
   * @Date:   2017.8.5
   * @updatge:2017.8.5
@@ -54,7 +54,7 @@ void rtc_update_notify(uint32_t rtc_counter_val)
 /*
   * @brief  hal_init
   * @param  void
-  * @note    1.³õÊ¼»¯º¯Êı    
+  * @note    1.åˆå§‹åŒ–å‡½æ•°    
   * @Date:   2017.8.5
   * @author: zhao
   * @return: int32_t
@@ -64,8 +64,8 @@ int32_t	hal_init(void)
 	NVIC_Priority_Group_Configuration();
 
   SYSTICK_init();  
-	uart_init(115200);	 	//´®¿Ú³õÊ¼»¯256000
- 	usmart_dev.init(72);	//³õÊ¼»¯USMART
+	uart_init(115200);	 	//ä¸²å£åˆå§‹åŒ–256000
+ 	usmart_dev.init(72);	//åˆå§‹åŒ–USMART
  	delay_init();
   lcd_init();	
 	rtc_init(NULL);
@@ -77,7 +77,7 @@ int32_t	hal_init(void)
 	SI4332A_Init();
 	SI4332B_Init();
 	bsp_key_init(BUTTON_2,protocol_task);
-    bsp_key_init1();
+  bsp_key_init1();
 	HC595_GpioInit();
 	
 	return 0;
