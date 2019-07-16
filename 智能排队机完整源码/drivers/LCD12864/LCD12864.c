@@ -919,7 +919,7 @@ void lcd_id(void)
  // char *p=mystr1;
 
 	lcd_write(0,0,"ID_card:",7);
-	lcd_write(1,0,"This is a test.",14);
+//	lcd_write(1,0,"This is a test.",14);
 	ByteToHexStr(mystr,read_buff,8);
 	lcd_write(2,0,mystr,16);
 	
