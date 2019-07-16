@@ -1,10 +1,10 @@
 /*
 ******************************************************************************
 * @file    TIM/TimeBase/main.c 
-* @author  ²úÆ·ÖĞĞÄ.Ó²¼ş²¿
+* @author  äº§å“ä¸­å¿ƒ.ç¡¬ä»¶éƒ¨
 * @version V1.0.0
 * @date    2017.09.07
-* @brief   Í¨ÓÃ¶¨Ê±Æ÷2
+* @brief   é€šç”¨å®šæ—¶å™¨2
 ******************************************************************************
 */
 
@@ -27,11 +27,11 @@ __IO uint16_t CCR4_Val = 60000;//10ms,100Hz
 
 
 /*******************************************************************
-*º¯Êı£ºvoid TIM2_Init(void)
-*¹¦ÄÜ£º¶¨Ê±Æ÷2³õÊ¼»¯
-*ÊäÈë£ºÎŞ
-*Êä³ö£ºÎŞ
-*ÌØÊâËµÃ÷£ºÎŞ
+*å‡½æ•°ï¼švoid TIM2_Init(void)
+*åŠŸèƒ½ï¼šå®šæ—¶å™¨2åˆå§‹åŒ–
+*è¾“å…¥ï¼šæ— 
+*è¾“å‡ºï¼šæ— 
+*ç‰¹æ®Šè¯´æ˜ï¼šæ— 
 *******************************************************************/
 void TIM3_Init(void)
 {
@@ -43,7 +43,7 @@ void TIM3_Init(void)
 
 	/* --------------------------NVIC Configuration -------------------------------*/
 	/* Enable the TIM2 gloabal Interrupt */
-	MY_NVIC_Init(2, 2, TIM3_IRQn, NVIC_PriorityGroup_2);	//ÖĞ¶Ï·Ö×é2
+	MY_NVIC_Init(2, 2, TIM3_IRQn, NVIC_PriorityGroup_2);	//ä¸­æ–­åˆ†ç»„2
   
   
 	/* ------------------- TIM2 Configuration:Output Compare Timing Mode ---------*/
@@ -127,7 +127,7 @@ void TIM3_IRQHandler(void)
 	{
 		TIM_ClearITPendingBit(TIM3, TIM_IT_CC1);
 
-		/***********************É¨ÃèÊıÂë¹Ü½ø³Ì´¦Àí************************/
+		/***********************æ‰«ææ•°ç ç®¡è¿›ç¨‹å¤„ç†************************/
 		led_scan();
 	
 		if((get_pwd_flag()!=PWD_IDLE_FLAG)&&(led2s<=200)&&(led_flag==true))  //		  
@@ -148,7 +148,7 @@ void TIM3_IRQHandler(void)
 	{
 		TIM_ClearITPendingBit(TIM3, TIM_IT_CC2);
 
-		//100us¶¨Ê±½ø³Ì
+		//100uså®šæ—¶è¿›ç¨‹
 
 
 		capture = TIM_GetCapture2(TIM3);
@@ -167,11 +167,11 @@ void TIM3_IRQHandler(void)
 	{
 		static uint8_t UART3_RX_TIMEOUT_COUNT=0;
 		TIM_ClearITPendingBit(TIM3, TIM_IT_CC4);
-		if( USART3_RX_STA==1)//ÕıÔÚ½ÓÊÕ´®¿ÚÊı¾İ
+		if( USART3_RX_STA==1)//æ­£åœ¨æ¥æ”¶ä¸²å£æ•°æ®
 		{
-			UART3_RX_TIMEOUT_COUNT++;//´®¿Ú³¬Ê±¼ÆÊı
-			if(UART3_RX_TIMEOUT_COUNT>3)//Êı¾İ½ÓÊÕ¼ä¸ô³¬¹ı3ms
-			{//´®¿Ú½ÓÊÕÍê³É»ò½áÊø
+			UART3_RX_TIMEOUT_COUNT++;//ä¸²å£è¶…æ—¶è®¡æ•°
+			if(UART3_RX_TIMEOUT_COUNT>3)//æ•°æ®æ¥æ”¶é—´éš”è¶…è¿‡3ms
+			{//ä¸²å£æ¥æ”¶å®Œæˆæˆ–ç»“æŸ
 				USART3_RX_STA=0;
 				UART3_RX_TIMEOUT_COUNT=0;
 				kfifo_reset(&usart3_fifo);
@@ -179,7 +179,7 @@ void TIM3_IRQHandler(void)
 			}
 		}
 
-		//10ms¶¨Ê±½ø³Ì
+		//10mså®šæ—¶è¿›ç¨‹
 		
 		capture = TIM_GetCapture4(TIM3);
 		TIM_SetCompare4(TIM3, capture + CCR4_Val);

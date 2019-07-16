@@ -3,60 +3,117 @@
 <pre>
 <h1>�Vision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ��Vision V5.25.2.0
-Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: aa aa, aa, LIC=GE701-CI1FH-HP3ZN-YBJHB-JNC0E-6XAHB
+IDE-Version: ��Vision V5.28.0.0
+Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: stefan charles, hack, LIC=BL263-A1NCD-XBBEC-7FK6F-JUCXG-0W47A
  
 Tool Versions:
-Toolchain:       MDK-ARM Professional  Version: 5.25.2.0
-Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+Toolchain:       MDK-ARM Professional  Version: 5.28.0.0
+Toolchain Path:  C:\STM32\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 6 (build 750)
 Assembler:       Armasm.exe V5.06 update 6 (build 750)
 Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
 Library Manager: ArmAr.exe V5.06 update 6 (build 750)
 Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
-CPU DLL:         SARMCM3.DLL V5.25.2.0
-Dialog DLL:      DCM.DLL V1.17.1.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
-Dialog DLL:      TCM.DLL V1.35.1.0
+CPU DLL:         SARMCM3.DLL V5.28.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.6.0
+Dialog DLL:      TCM.DLL V1.36.2.0
  
 <h2>Project:</h2>
-D:\code\newland-queuing-machine\Project\Template.uvprojx
-Project File Date:  09/30/2018
+E:\vscode\LineUp\ChangedCode\Project\Template.uvprojx
+Project File Date:  07/12/2019
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\STM32\ARM\ARMCC\Bin'
 Build target 'newland-queuing-machine'
-compiling hal_core.c...
-compiling main.c...
-compiling app_pwd.c...
-compiling usmart_config.c...
-compiling app_cloud.c...
-compiling potocol.c...
-compiling bsp_timer3.c...
-compiling LCD12864.c...
 compiling xfs5152ce.c...
-compiling rf_si4332a.c...
-compiling rf_si4332b.c...
-compiling key_button.c...
-linking...
-Program Size: Code=43968 RO-data=2928 RW-data=2232 ZI-data=4688  
-FromELF: creating hex file...
-"..\OBJ\newland-queuing-machine.axf" - 0 Error(s), 0 Warning(s).
+..\drivers\xfs5152ce\xfs5152ce.c(54): error:  #8: missing closing quote
+  	"不同�?",//5
+..\drivers\xfs5152ce\xfs5152ce.c(58): error:  #8: missing closing quote
+  	"读信�?",//9
+..\drivers\xfs5152ce\xfs5152ce.c(65): error:  #8: missing closing quote
+  	"再听一�?",//16
+..\drivers\xfs5152ce\xfs5152ce.c(66): error:  #8: missing closing quote
+  	"再读一�?",//17
+..\drivers\xfs5152ce\xfs5152ce.c(67): error:  #8: missing closing quote
+  	"大声�?",//18
+..\drivers\xfs5152ce\xfs5152ce.c(68): error:  #8: missing closing quote
+  	"小声�?",//19
+..\drivers\xfs5152ce\xfs5152ce.c(69): error:  #8: missing closing quote
+  	"读短�?",//20
+..\drivers\xfs5152ce\xfs5152ce.c(70): error:  #8: missing closing quote
+  	"读预警信�?",//21
+..\drivers\xfs5152ce\xfs5152ce.c(72): error:  #8: missing closing quote
+  	"紧急预警信�?",//23
+..\drivers\xfs5152ce\xfs5152ce.c(73): error:  #8: missing closing quote
+  	"开�?",//24
+..\drivers\xfs5152ce\xfs5152ce.c(76): error:  #8: missing closing quote
+  	"继续�?",//27
+..\drivers\xfs5152ce\xfs5152ce.c(77): error:  #8: missing closing quote
+  	"确定开�?",//28
+..\drivers\xfs5152ce\xfs5152ce.c(489): warning:  #870-D: invalid multibyte character sequence
+  	  sprintf(str_call,"�?%d号到窗口，ID卡尾号后三位�?%x ,%x ,%x ",number_read,num_id[number_read-1][5],num_id[number_read-1][6],num_id[number_read-1][7]);
+..\drivers\xfs5152ce\xfs5152ce.c(489): warning:  #870-D: invalid multibyte character sequence
+  	  sprintf(str_call,"�?%d号到窗口，ID卡尾号后三位�?%x ,%x ,%x ",number_read,num_id[number_read-1][5],num_id[number_read-1][6],num_id[number_read-1][7]);
+..\drivers\xfs5152ce\xfs5152ce.c(507): error:  #8: missing closing quote
+  	xfs_voice_start((unsigned char *)"存储完成�?", XFS_FORMAT_GBK, 1);
+..\drivers\xfs5152ce\xfs5152ce.c(508): error:  #165: too few arguments in function call
+  	xfs_voice_start((unsigned char *)"磁卡已存�?", XFS_FORMAT_GBK, 1);
+..\drivers\xfs5152ce\xfs5152ce.c(508): error:  #18: expected a ")"
+  	xfs_voice_start((unsigned char *)"磁卡已存�?", XFS_FORMAT_GBK, 1);
+..\drivers\xfs5152ce\xfs5152ce.c(508): error:  #8: missing closing quote
+  	xfs_voice_start((unsigned char *)"磁卡已存�?", XFS_FORMAT_GBK, 1);
+..\drivers\xfs5152ce\xfs5152ce.c(539): warning: At end of source:  #12-D: parsing restarts here after previous syntax error
+..\drivers\xfs5152ce\xfs5152ce.c(539): error: At end of source:  #65: expected a ";"
+..\drivers\xfs5152ce\xfs5152ce.c(539): error: At end of source:  #67: expected a "}"
+..\drivers\xfs5152ce\xfs5152ce.c: 3 warnings, 18 errors
+compiling main.c...
+..\app\main.c(39): error:  #8: missing closing quote
+    xfs_voice_start((unsigned char *)"欢迎使用智能排队�?", XFS_FORMAT_GBK, 1);
+..\app\main.c(41): error:  #165: too few arguments in function call
+    show_logo();
+..\app\main.c(41): error:  #18: expected a ")"
+    show_logo();
+..\app\main.c: 0 warnings, 3 errors
+compiling app_pwd.c...
+..\app\pwd\app_pwd.c(282): error:  #8: missing closing quote
+  		xfs_voice_start((unsigned char *)"无效�?", XFS_FORMAT_GBK, 1);
+..\app\pwd\app_pwd.c(283): error:  #165: too few arguments in function call
+  		break;
+..\app\pwd\app_pwd.c(283): error:  #18: expected a ")"
+  		break;
+..\app\pwd\app_pwd.c(417): warning:  #870-D: invalid multibyte character sequence
+          DBG_B_INFO("空闲到刷�? ");
+..\app\pwd\app_pwd.c(417): warning:  #870-D: invalid multibyte character sequence
+          DBG_B_INFO("空闲到刷�? ");
+..\app\pwd\app_pwd.c(423): warning:  #870-D: invalid multibyte character sequence
+  		DBG_B_INFO("刷卡到空�? ");
+..\app\pwd\app_pwd.c(423): warning:  #870-D: invalid multibyte character sequence
+  		DBG_B_INFO("刷卡到空�? ");
+..\app\pwd\app_pwd.c(451): error:  #8: missing closing quote
+  	xfs_voice_start((unsigned char *)"请刷�?", XFS_FORMAT_GBK, 1);
+..\app\pwd\app_pwd.c(453): error:  #165: too few arguments in function call
+  	change_pwd_flag(PWD_RUN_FLAG);
+..\app\pwd\app_pwd.c(453): error:  #18: expected a ")"
+  	change_pwd_flag(PWD_RUN_FLAG);
+..\app\pwd\app_pwd.c: 4 warnings, 6 errors
+"..\OBJ\newland-queuing-machine.axf" - 27 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: Keil
-                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.2.0.pack
-                Keil.STM32F1xx_DFP.2.2.0
+                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.3.0.pack
+                Keil.STM32F1xx_DFP.2.3.0
                 STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_newland-queuing-machine
-  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+  C:\STM32\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:02
+Target not created.
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

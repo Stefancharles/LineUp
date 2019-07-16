@@ -910,13 +910,10 @@ void lcd_id(void)
 	
 	  
 	//空白部分起始========>>
-	
-
-	
-		//char num
+    //char num
 	char mystr[16] = "";
 
- // char *p=mystr1;
+    // char *p=mystr1;
 
 	lcd_write(1,0,"ID_card:",7);
 	

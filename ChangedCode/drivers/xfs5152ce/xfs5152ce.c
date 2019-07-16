@@ -412,9 +412,10 @@ int xfs_recognize(unsigned char *result, unsigned int waittime)
 	
 	
 
-	while (--waittime){
+	while (--waittime)
+	{
 		 SYSTICK_Delay10ms(1);
-		 kfifo_pull_out(&usart3_fifo,rx_frame_info,1);	
+		 kfifo_pull_out(&usart3_fifo,rx_frame_info,1);	//把usart3接收到的数据第一个字节存进首地址为rx_frame_info的数组中
 	
 			if(rx_frame_info[0]==0xFC)
 			break;

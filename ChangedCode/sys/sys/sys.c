@@ -3,7 +3,7 @@
 * @ Author    --> By@ Sam Chan
 * @ Version   --> V1.0
 * @ Date      --> 10 - 20 - 2012
-* @ Brief     --> ÏµÍ³ÉèÖÃÏà¹ØµÄº¯Êı
+* @ Brief     --> ç³»ç»Ÿè®¾ç½®ç›¸å…³çš„å‡½æ•°
 *
 * @ Copyright (C) 20**
 * @ All rights reserved
@@ -13,63 +13,63 @@
 * @ Version   --> V1.0.1
 * @ Author    --> By@ Sam Chan
 * @ Date      --> 03 - 09 - 2014
-* @ Revise    --> Ôö¼ÓGPIO¹²ÓÃ³õÊ¼»¯º¯Êı£¬·½±ãÔÚÒÆÖ²Ê±Ö±½Óºê¶¨Òå¼´¿É
+* @ Revise    --> å¢åŠ GPIOå…±ç”¨åˆå§‹åŒ–å‡½æ•°ï¼Œæ–¹ä¾¿åœ¨ç§»æ¤æ—¶ç›´æ¥å®å®šä¹‰å³å¯
 *
 * @ Version   --> V1.0.2
 * @ Author    --> By@ Sam Chan
 * @ Date      --> 05 - 10 - 2014
-* @ Revise    --> Ôö¼Ó¶ÔC++»·¾³Ö§³Ö
+* @ Revise    --> å¢åŠ å¯¹C++ç¯å¢ƒæ”¯æŒ
 *
 ******************************************************************************/
 
 #include "sys.h"
 
 /******************************************************************************
-* Function Name --> STM32 GPIOÊä³ö·½Ïò³õÊ¼»¯
-* Description   --> °´ÕÕ´Ëº¯ÊıĞÎ²ÎµÄË³Ğò½øĞĞºê¶¨Òå¼´¿É
+* Function Name --> STM32 GPIOè¾“å‡ºæ–¹å‘åˆå§‹åŒ–
+* Description   --> æŒ‰ç…§æ­¤å‡½æ•°å½¢å‚çš„é¡ºåºè¿›è¡Œå®å®šä¹‰å³å¯
 * Input         --> none
 * Output        --> none
 * Reaturn       --> none 
 ******************************************************************************/
 void STM32_GPIOx_Init(
-                        uint32_t RCC_APB2Periph,		/* GPIO¶ÔÓ¦Ê±ÖÓ */
-						GPIO_TypeDef* GPIOx,			/* Ëù¶ÔÓ¦µÄGPIO×é */
-						uint16_t GPIO_Pinx,				/* GPIO¶ÔÓ¦µÄ¹Ü½ÅºÅ */                       
-						GPIOSpeed_TypeDef GPIO_SPEED,	/* GPIO·­×ªËÙ¶È */
-						GPIOMode_TypeDef GPIO_MODE		/* GPIOÉèÖÃÄ£Ê½ */
+                        uint32_t RCC_APB2Periph,		/* GPIOå¯¹åº”æ—¶é’Ÿ */
+						GPIO_TypeDef* GPIOx,			/* æ‰€å¯¹åº”çš„GPIOç»„ */
+						uint16_t GPIO_Pinx,				/* GPIOå¯¹åº”çš„ç®¡è„šå· */                       
+						GPIOSpeed_TypeDef GPIO_SPEED,	/* GPIOç¿»è½¬é€Ÿåº¦ */
+						GPIOMode_TypeDef GPIO_MODE		/* GPIOè®¾ç½®æ¨¡å¼ */
 					   )
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 
-	//¼ì²âÊäÈë²ÎÊı
+	//æ£€æµ‹è¾“å…¥å‚æ•°
 	assert_param(IS_RCC_APB2_PERIPH(RCC_APB2Periph));
 	assert_param(IS_GPIO_PIN(GPIO_Pinx));
 	assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
 	assert_param(IS_GPIO_SPEED(GPIO_SPEED));
 	assert_param(IS_GPIO_MODE(GPIO_MODE)); 
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph, ENABLE);	//¿ªÆôÍâÉèÊ±ÖÓ
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph, ENABLE);	//å¼€å¯å¤–è®¾æ—¶é’Ÿ
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pinx;
 	GPIO_InitStructure.GPIO_Speed = GPIO_SPEED;
 	GPIO_InitStructure.GPIO_Mode = GPIO_MODE;
 
-	GPIO_Init(GPIOx, &GPIO_InitStructure);	//³õÊ¼»¯GPIOÏà¹Ø½á¹¹Ìå
+	GPIO_Init(GPIOx, &GPIO_InitStructure);	//åˆå§‹åŒ–GPIOç›¸å…³ç»“æ„ä½“
 }
 /******************************************************************************
-* Function Name --> ¶ÁÈ¡Ğ¾Æ¬ÉÁ´æÈİÁ¿
+* Function Name --> è¯»å–èŠ¯ç‰‡é—ªå­˜å®¹é‡
 * Description   --> none
 * Input         --> none
-* Output        --> *STMCapa£ºÈİÁ¿×Ö·ûÏÔÊ¾»º´æ
+* Output        --> *STMCapaï¼šå®¹é‡å­—ç¬¦æ˜¾ç¤ºç¼“å­˜
 * Reaturn       --> none 
 ******************************************************************************/
 void STM32_Flash_Capacity(uint8_t *STMCapa)
 {
 	uint16_t capa;
 	
-	capa = *((uint16_t*)0x1ffff7e0);	//¶ÁÈ¡ÉÁ´æÈİÁ¿¼Ä´æÆ÷£¬µÍ16Î»ÓĞĞ§
+	capa = *((uint16_t*)0x1ffff7e0);	//è¯»å–é—ªå­˜å®¹é‡å¯„å­˜å™¨ï¼Œä½16ä½æœ‰æ•ˆ
 	
-	capa = ((capa >> 12) * 4096 + ((capa >> 8) & 0x0f) * 256 + ((capa >> 4) & 0x0f) * 16 + (capa & 0x0f));	//×ª»»³ÉÊ®½øÖÆ
+	capa = ((capa >> 12) * 4096 + ((capa >> 8) & 0x0f) * 256 + ((capa >> 4) & 0x0f) * 16 + (capa & 0x0f));	//è½¬æ¢æˆåè¿›åˆ¶
 	
 	STMCapa[0] = 0x4d;	//M
 	STMCapa[1] = 0x43;	//C
@@ -79,20 +79,20 @@ void STM32_Flash_Capacity(uint8_t *STMCapa)
 	STMCapa[5] = 0x70;	//p
 	STMCapa[6] = 0x3a;	//:
 	
-	if((capa / 1000) != 0)	STMCapa[7] = capa / 1000 + 48;	//Ç§Î»²»Îª0Ê±ÏÔÊ¾
+	if((capa / 1000) != 0)	STMCapa[7] = capa / 1000 + 48;	//åƒä½ä¸ä¸º0æ—¶æ˜¾ç¤º
 	else	STMCapa[7] = 0x20;
 	
-	STMCapa[8] = capa % 1000 / 100 + 48;	//°ÙÎ»
-	STMCapa[9] = capa % 100 /10 + 48;		//Ê®Î»
-	STMCapa[10] = capa % 10 + 48;			//¸öÎ»
+	STMCapa[8] = capa % 1000 / 100 + 48;	//ç™¾ä½
+	STMCapa[9] = capa % 100 /10 + 48;		//åä½
+	STMCapa[10] = capa % 10 + 48;			//ä¸ªä½
 	STMCapa[11] = 0x4b;	//K
 	STMCapa[12] = 0x62;	//b
 }
 /******************************************************************************
-* Function Name --> ¶ÁÈ¡CPUID
+* Function Name --> è¯»å–CPUID
 * Description   --> none
 * Input         --> none
-* Output        --> ´æ´¢CPUID»º´æ£¨×Ö·û´®Êä³ö£©
+* Output        --> å­˜å‚¨CPUIDç¼“å­˜ï¼ˆå­—ç¬¦ä¸²è¾“å‡ºï¼‰
 * Reaturn       --> none 
 ******************************************************************************/
 void STM32_CPUID(uint8_t *IDbuff)
@@ -102,61 +102,61 @@ void STM32_CPUID(uint8_t *IDbuff)
 	sprintf((char*)IDbuff, "CPU ID:%08X", CPUID);
 }
 /******************************************************************************
-* Function Name --> ÉèÖÃÏòÁ¿±íÆ«ÒÆµØÖ·
+* Function Name --> è®¾ç½®å‘é‡è¡¨åç§»åœ°å€
 * Description   --> none
-* Input         --> NVIC_VectTab£º»ùÖ·
-*                      SRAM_BASE£ºÄÚ²¿SRAMµØÖ·(»ò£ºNVIC_VectTab_RAM)
-*                     FLASH_BASE£ºÄÚ²¿FLASHµØÖ·(»ò£ºNVIC_VectTab_FLASH)
-*                   Offset£ºÆ«ÒÆÁ¿	
+* Input         --> NVIC_VectTabï¼šåŸºå€
+*                      SRAM_BASEï¼šå†…éƒ¨SRAMåœ°å€(æˆ–ï¼šNVIC_VectTab_RAM)
+*                     FLASH_BASEï¼šå†…éƒ¨FLASHåœ°å€(æˆ–ï¼šNVIC_VectTab_FLASH)
+*                   Offsetï¼šåç§»é‡	
 * Output        --> none
 * Reaturn       --> none 
 ******************************************************************************/ 
 void MY_NVIC_SetVectorTable(uint32_t NVIC_VectTab,uint32_t Offset)	 
 {
-	//¼ì²âÊäÈë²ÎÊı
+	//æ£€æµ‹è¾“å…¥å‚æ•°
 	assert_param(IS_NVIC_VECTTAB(NVIC_VectTab));
 	assert_param(IS_NVIC_OFFSET(Offset));
 	 	   	 
-	SCB->VTOR = NVIC_VectTab | (Offset & (uint32_t)0x1fffff80);//ÉèÖÃNVICµÄÏòÁ¿±íÆ«ÒÆ¼Ä´æÆ÷
-	//ÓÃÓÚ±êÊ¶ÏòÁ¿±íÊÇÔÚCODEÇø»¹ÊÇÔÚRAMÇø
+	SCB->VTOR = NVIC_VectTab | (Offset & (uint32_t)0x1fffff80);//è®¾ç½®NVICçš„å‘é‡è¡¨åç§»å¯„å­˜å™¨
+	//ç”¨äºæ ‡è¯†å‘é‡è¡¨æ˜¯åœ¨CODEåŒºè¿˜æ˜¯åœ¨RAMåŒº
 }
 /******************************************************************************
-* Function Name --> ÉèÖÃÖĞ¶Ï·Ö×é
-* Description   --> 0 ~ 4×é£¬¹²¼ÆÓĞ5×é
-* Input         --> NVIC_PriorityGroup: ÖĞ¶Ï·Ö×é
+* Function Name --> è®¾ç½®ä¸­æ–­åˆ†ç»„
+* Description   --> 0 ~ 4ç»„ï¼Œå…±è®¡æœ‰5ç»„
+* Input         --> NVIC_PriorityGroup: ä¸­æ–­åˆ†ç»„
 * Output        --> none
 * Reaturn       --> none 
 ******************************************************************************/ 
 void MY_NVIC_PriorityGroup_Config(uint32_t NVIC_PriorityGroup)
 {
-	//¼ì²âÊäÈë²ÎÊı
+	//æ£€æµ‹è¾“å…¥å‚æ•°
 	assert_param(IS_NVIC_PRIORITY_GROUP(NVIC_PriorityGroup));
 
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup);	//ÉèÖÃÖĞ¶Ï·Ö×é
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup);	//è®¾ç½®ä¸­æ–­åˆ†ç»„
 	
 //	uint32_t temp,temp1;
 //	
-//	temp1 = (~NVIC_PriorityGroup) & 0x00000007;//È¡ºóÈıÎ»
+//	temp1 = (~NVIC_PriorityGroup) & 0x00000007;//å–åä¸‰ä½
 //	temp1 <<= 8;
-//	temp = SCB->AIRCR;  //¶ÁÈ¡ÏÈÇ°µÄÉèÖÃ
-//	temp &= 0x0000f8ff; //Çå¿ÕÏÈÇ°·Ö×é
-//	temp |= 0x05fa0000; //Ğ´ÈëÔ¿³×
+//	temp = SCB->AIRCR;  //è¯»å–å…ˆå‰çš„è®¾ç½®
+//	temp &= 0x0000f8ff; //æ¸…ç©ºå…ˆå‰åˆ†ç»„
+//	temp |= 0x05fa0000; //å†™å…¥é’¥åŒ™
 //	temp |= temp1;	   
-//	SCB->AIRCR = temp;  //ÉèÖÃ·Ö×é
+//	SCB->AIRCR = temp;  //è®¾ç½®åˆ†ç»„
 }
 /******************************************************************************
-* Function Name --> ÉèÖÃÖĞ¶Ï·Ö×éÓÅÏÈ¼¶
-* Description   --> 1¡¢×é»®·Ö:
-*                      ×é0£º0Î»ÇÀÕ¼ÓÅÏÈ¼¶£¬4Î»ÏìÓ¦ÓÅÏÈ¼¶
-*                      ×é1£º1Î»ÇÀÕ¼ÓÅÏÈ¼¶£¬3Î»ÏìÓ¦ÓÅÏÈ¼¶
-*                      ×é2£º2Î»ÇÀÕ¼ÓÅÏÈ¼¶£¬2Î»ÏìÓ¦ÓÅÏÈ¼¶
-*                      ×é3£º3Î»ÇÀÕ¼ÓÅÏÈ¼¶£¬1Î»ÏìÓ¦ÓÅÏÈ¼¶
-*                      ×é4£º4Î»ÇÀÕ¼ÓÅÏÈ¼¶£¬0Î»ÏìÓ¦ÓÅÏÈ¼¶
-*                   2¡¢ÇÀÏÈÓÅÏÈ¼¶²ÎÊıºÍÏìÓ¦ÓÅÏÈ¼¶²ÎÊıÔ­ÔòÉÏÊÇÊıÖµÔ½Ğ¡ÓÅÏÈ¼¶Ô½¸ß
-* Input         --> NVIC_PreemptionPriority£ºÇÀÏÈÓÅÏÈ¼¶
-*                   NVIC_Subpriority£ºÏìÓ¦ÓÅÏÈ¼¶
-*                   NVIC_Channel£ºÖĞ¶Ï±àºÅ
-*                   NVIC_Group: ÖĞ¶Ï·Ö×é
+* Function Name --> è®¾ç½®ä¸­æ–­åˆ†ç»„ä¼˜å…ˆçº§
+* Description   --> 1ã€ç»„åˆ’åˆ†:
+*                      ç»„0ï¼š0ä½æŠ¢å ä¼˜å…ˆçº§ï¼Œ4ä½å“åº”ä¼˜å…ˆçº§
+*                      ç»„1ï¼š1ä½æŠ¢å ä¼˜å…ˆçº§ï¼Œ3ä½å“åº”ä¼˜å…ˆçº§
+*                      ç»„2ï¼š2ä½æŠ¢å ä¼˜å…ˆçº§ï¼Œ2ä½å“åº”ä¼˜å…ˆçº§
+*                      ç»„3ï¼š3ä½æŠ¢å ä¼˜å…ˆçº§ï¼Œ1ä½å“åº”ä¼˜å…ˆçº§
+*                      ç»„4ï¼š4ä½æŠ¢å ä¼˜å…ˆçº§ï¼Œ0ä½å“åº”ä¼˜å…ˆçº§
+*                   2ã€æŠ¢å…ˆä¼˜å…ˆçº§å‚æ•°å’Œå“åº”ä¼˜å…ˆçº§å‚æ•°åŸåˆ™ä¸Šæ˜¯æ•°å€¼è¶Šå°ä¼˜å…ˆçº§è¶Šé«˜
+* Input         --> NVIC_PreemptionPriorityï¼šæŠ¢å…ˆä¼˜å…ˆçº§
+*                   NVIC_Subpriorityï¼šå“åº”ä¼˜å…ˆçº§
+*                   NVIC_Channelï¼šä¸­æ–­ç¼–å·
+*                   NVIC_Group: ä¸­æ–­åˆ†ç»„
 * Output        --> none
 * Reaturn       --> none 
 ******************************************************************************/ 
@@ -164,39 +164,39 @@ void MY_NVIC_Init(uint8_t NVIC_PreemptionPriority,uint8_t NVIC_Subpriority,uint8
 {
 	NVIC_InitTypeDef NVIC_InitStructure;
 
-	//¼ì²âÊäÈë²ÎÊı
+	//æ£€æµ‹è¾“å…¥å‚æ•°
 	assert_param(IS_NVIC_PREEMPTION_PRIORITY(NVIC_PreemptionPriority));  
 	assert_param(IS_NVIC_SUB_PRIORITY(NVIC_Subpriority));
 	
-	MY_NVIC_PriorityGroup_Config(NVIC_Group);	//ÉèÖÃÖĞ¶Ï·Ö×é	
+	MY_NVIC_PriorityGroup_Config(NVIC_Group);	//è®¾ç½®ä¸­æ–­åˆ†ç»„	
 	
-	NVIC_InitStructure.NVIC_IRQChannel = NVIC_Channel;								//ÉèÖÃÖĞ¶ÏÍ¨µÀ
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = NVIC_PreemptionPriority;	//ÇÀÏÈÓÅÏÈ¼¶  	 	 
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = NVIC_Subpriority;				//ÏìÓ¦ÓÅÏÈ¼¶
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;									//Ê¹ÄÜÖĞ¶Ï
+	NVIC_InitStructure.NVIC_IRQChannel = NVIC_Channel;								//è®¾ç½®ä¸­æ–­é€šé“
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = NVIC_PreemptionPriority;	//æŠ¢å…ˆä¼˜å…ˆçº§  	 	 
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = NVIC_Subpriority;				//å“åº”ä¼˜å…ˆçº§
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;									//ä½¿èƒ½ä¸­æ–­
 
-	NVIC_Init(&NVIC_InitStructure);	//³õÊ¼»¯ÖĞ¶Ï
+	NVIC_Init(&NVIC_InitStructure);	//åˆå§‹åŒ–ä¸­æ–­
 	
 //	uint32_t temp;	
-//	uint8_t IPRADDR=NVIC_Channel/4;  //Ã¿×éÖ»ÄÜ´æ4¸ö,µÃµ½×éµØÖ· 
-//	uint8_t IPROFFSET=NVIC_Channel%4;//ÔÚ×éÄÚµÄÆ«ÒÆ
+//	uint8_t IPRADDR=NVIC_Channel/4;  //æ¯ç»„åªèƒ½å­˜4ä¸ª,å¾—åˆ°ç»„åœ°å€ 
+//	uint8_t IPROFFSET=NVIC_Channel%4;//åœ¨ç»„å†…çš„åç§»
 //	
-//	IPROFFSET = IPROFFSET*8 + 4;    //µÃµ½Æ«ÒÆµÄÈ·ÇĞÎ»ÖÃ
+//	IPROFFSET = IPROFFSET*8 + 4;    //å¾—åˆ°åç§»çš„ç¡®åˆ‡ä½ç½®
 //	
-//	MY_NVIC_PriorityGroup_Config(NVIC_Group);//ÉèÖÃ·Ö×é
+//	MY_NVIC_PriorityGroup_Config(NVIC_Group);//è®¾ç½®åˆ†ç»„
 //	
-//	temp  = NVIC_PreemptionPriority << (4 - NVIC_Group);	//ÇÀÏÈÓÅÏÈ¼¶	  
-//	temp |= NVIC_Subpriority & (0x0f >> NVIC_Group);	//ÏàÓ¦ÓÅÏÈ¼¶
-//	temp &= 0xf;//È¡µÍËÄÎ»
+//	temp  = NVIC_PreemptionPriority << (4 - NVIC_Group);	//æŠ¢å…ˆä¼˜å…ˆçº§	  
+//	temp |= NVIC_Subpriority & (0x0f >> NVIC_Group);	//ç›¸åº”ä¼˜å…ˆçº§
+//	temp &= 0xf;//å–ä½å››ä½
 
-//	if(NVIC_Channel < 32)	NVIC->ISER[0] |= 1 << NVIC_Channel;//Ê¹ÄÜÖĞ¶ÏÎ»(ÒªÇå³ıµÄ»°,Ïà·´²Ù×÷¾ÍOK)
+//	if(NVIC_Channel < 32)	NVIC->ISER[0] |= 1 << NVIC_Channel;//ä½¿èƒ½ä¸­æ–­ä½(è¦æ¸…é™¤çš„è¯,ç›¸åæ“ä½œå°±OK)
 //	else	NVIC->ISER[1]| |= 1 << (NVIC_Channel - 32); 
 //	
-//	NVIC->IPR[IPRADDR] |= temp << IPROFFSET;//ÉèÖÃÏìÓ¦ÓÅÏÈ¼¶ºÍÇÀ¶ÏÓÅÏÈ¼¶  
+//	NVIC->IPR[IPRADDR] |= temp << IPROFFSET;//è®¾ç½®å“åº”ä¼˜å…ˆçº§å’ŒæŠ¢æ–­ä¼˜å…ˆçº§  
 }
 /******************************************************************************
-* Function Name --> THUMBÖ¸Áî²»Ö§³Ö»ã±àÄÚÁª
-* Description   --> ²ÉÓÃÈçÏÂ·½·¨ÊµÏÖÖ´ĞĞ»ã±àÖ¸ÁîWFI
+* Function Name --> THUMBæŒ‡ä»¤ä¸æ”¯æŒæ±‡ç¼–å†…è”
+* Description   --> é‡‡ç”¨å¦‚ä¸‹æ–¹æ³•å®ç°æ‰§è¡Œæ±‡ç¼–æŒ‡ä»¤WFI
 * Input         --> none
 * Output        --> none
 * Reaturn       --> none 
@@ -206,52 +206,52 @@ __asm void WFI_SET(void)
 	WFI;    
 }
 /******************************************************************************
-* Function Name --> ËùÓĞÊ±ÖÓ¼Ä´æÆ÷¸´Î»
-* Description   --> ²»ÄÜÔÚÕâÀïÖ´ĞĞËùÓĞÍâÉè¸´Î»!·ñÔòÖÁÉÙÒıÆğ´®¿Ú²»¹¤×÷
+* Function Name --> æ‰€æœ‰æ—¶é’Ÿå¯„å­˜å™¨å¤ä½
+* Description   --> ä¸èƒ½åœ¨è¿™é‡Œæ‰§è¡Œæ‰€æœ‰å¤–è®¾å¤ä½!å¦åˆ™è‡³å°‘å¼•èµ·ä¸²å£ä¸å·¥ä½œ
 * Input         --> none
 * Output        --> none
 * Reaturn       --> none 
 ******************************************************************************/ 
 void MY_RCC_DeInit(void)
 {										  					   
-	RCC->APB1RSTR = 0x00000000;	//¸´Î»½áÊø			 
+	RCC->APB1RSTR = 0x00000000;	//å¤ä½ç»“æŸ			 
 	RCC->APB2RSTR = 0x00000000; 
 	  
-  	RCC->AHBENR   = 0x00000014;	//Ë¯ÃßÄ£Ê½ÉÁ´æºÍSRAMÊ±ÖÓÊ¹ÄÜ.ÆäËû¹Ø±Õ.	  
-  	RCC->APB2ENR  = 0x00000000;	//ÍâÉèÊ±ÖÓ¹Ø±Õ.			   
+  	RCC->AHBENR   = 0x00000014;	//ç¡çœ æ¨¡å¼é—ªå­˜å’ŒSRAMæ—¶é’Ÿä½¿èƒ½.å…¶ä»–å…³é—­.	  
+  	RCC->APB2ENR  = 0x00000000;	//å¤–è®¾æ—¶é’Ÿå…³é—­.			   
   	RCC->APB1ENR  = 0x00000000;   
-	RCC->CR      |= 0x00000001;	//Ê¹ÄÜÄÚ²¿¸ßËÙÊ±ÖÓHSION	 															 
-	RCC->CFGR    &= 0xf8ff0000;	//¸´Î»SW[1:0],HPRE[3:0],PPRE1[2:0],PPRE2[2:0],ADCPRE[1:0],MCO[2:0]					 
-	RCC->CR      &= 0xfef6ffff;	//¸´Î»HSEON,CSSON,PLLON
-	RCC->CR      &= 0xfffbffff;	//¸´Î»HSEBYP	   	  
-	RCC->CFGR    &= 0xff80ffff;	//¸´Î»PLLSRC, PLLXTPRE, PLLMUL[3:0] and USBPRE 
-	RCC->CIR      = 0x00000000;	//¹Ø±ÕËùÓĞÖĞ¶Ï
+	RCC->CR      |= 0x00000001;	//ä½¿èƒ½å†…éƒ¨é«˜é€Ÿæ—¶é’ŸHSION	 															 
+	RCC->CFGR    &= 0xf8ff0000;	//å¤ä½SW[1:0],HPRE[3:0],PPRE1[2:0],PPRE2[2:0],ADCPRE[1:0],MCO[2:0]					 
+	RCC->CR      &= 0xfef6ffff;	//å¤ä½HSEON,CSSON,PLLON
+	RCC->CR      &= 0xfffbffff;	//å¤ä½HSEBYP	   	  
+	RCC->CFGR    &= 0xff80ffff;	//å¤ä½PLLSRC, PLLXTPRE, PLLMUL[3:0] and USBPRE 
+	RCC->CIR      = 0x00000000;	//å…³é—­æ‰€æœ‰ä¸­æ–­
 	
-	//ÅäÖÃÏòÁ¿±í				  
+	//é…ç½®å‘é‡è¡¨				  
 #ifdef  VECT_TAB_RAM
-	MY_NVIC_SetVectorTable(NVIC_VectTab_RAM, 0x0);	//ÄÚ²¿SRAMÆğÊ¼µØÖ·
+	MY_NVIC_SetVectorTable(NVIC_VectTab_RAM, 0x0);	//å†…éƒ¨SRAMèµ·å§‹åœ°å€
 #else   
-	MY_NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x0);	//ÄÚ²¿FLASHÆğÊ¼µØÖ·
+	MY_NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x0);	//å†…éƒ¨FLASHèµ·å§‹åœ°å€
 #endif
 }
 /******************************************************************************
-* Function Name --> ÉèÖÃĞ¾Æ¬½øÈë´ı»úÄ£Ê½
-* Description   --> ÀûÓÃWKUPÒı½Å»½ĞÑ£¨PA.0£©
+* Function Name --> è®¾ç½®èŠ¯ç‰‡è¿›å…¥å¾…æœºæ¨¡å¼
+* Description   --> åˆ©ç”¨WKUPå¼•è„šå”¤é†’ï¼ˆPA.0ï¼‰
 * Input         --> none
 * Output        --> none
 * Reaturn       --> none 
 ******************************************************************************/
 void SYS_Standby(void)
 {
-	SCB->SCR |= 1 << 2;			//Ê¹ÄÜsleep deep£¨SYS->CTRL£©
-	RCC->APB1ENR |= 1 << 28;	//µçÔ´½Ó¿ÚÊ±ÖÓ¿ªÆô
-	PWR->CSR |= 1 << 8;			//ÉèÖÃWKUPÒı½ÅÓÃÓÚ»½ĞÑ
-	PWR->CR |= 1 << 2;			//Çå³ıWAKE-UP±êÖ¾
-	PWR->CR |= 1 << 1;			//PDDSÖÃÎ»£¬µôµçÉîË¯Ãß
-	WFI_SET();					//Ö´ĞĞWFIÖ¸Áî
+	SCB->SCR |= 1 << 2;			//ä½¿èƒ½sleep deepï¼ˆSYS->CTRLï¼‰
+	RCC->APB1ENR |= 1 << 28;	//ç”µæºæ¥å£æ—¶é’Ÿå¼€å¯
+	PWR->CSR |= 1 << 8;			//è®¾ç½®WKUPå¼•è„šç”¨äºå”¤é†’
+	PWR->CR |= 1 << 2;			//æ¸…é™¤WAKE-UPæ ‡å¿—
+	PWR->CR |= 1 << 1;			//PDDSç½®ä½ï¼Œæ‰ç”µæ·±ç¡çœ 
+	WFI_SET();					//æ‰§è¡ŒWFIæŒ‡ä»¤
 }
 /******************************************************************************
-* Function Name --> ÏµÍ³Èí¸´Î»
+* Function Name --> ç³»ç»Ÿè½¯å¤ä½
 * Description   --> none
 * Input         --> none
 * Output        --> none
@@ -259,30 +259,30 @@ void SYS_Standby(void)
 ******************************************************************************/
 void SYS_SoftReset(void)
 {
-	SCB->AIRCR = 0x05fa0000 | 0x00000004;  //¾ßÌåÇë²Î¿¼¡¶Cortex-M3È¨ÍşÖ¸ÄÏ(ÖĞÎÄ).pdf¡·µÚ285Ò³ÄÚÈİ
+	SCB->AIRCR = 0x05fa0000 | 0x00000004;  //å…·ä½“è¯·å‚è€ƒã€ŠCortex-M3æƒå¨æŒ‡å—(ä¸­æ–‡).pdfã€‹ç¬¬285é¡µå†…å®¹
 }
 /******************************************************************************
-* Function Name --> JTAGÄ£Ê½ÉèÖÃ
+* Function Name --> JTAGæ¨¡å¼è®¾ç½®
 * Description   --> none
-* Input         --> mode£ºÄ£Ê½²ÎÊı£¨ÏêÏ¸ºê¶¨Òå¼ûsys.hÖĞ¶¨Òå£©
-*                   000£ºJTAG-DP + SW-DP£¨¸´Î»×´Ì¬£©
-*                   001£ºJTAG-DP + SW-DP£¨³ıÁËJNTRSTÒı½Å£¬ÊÍ·ÅJRSTÒı½Å£©
-*                   010£ºJTAG-DP½Ó¿Ú½ûÖ¹£¬SW-DP½Ó¿ÚÔÊĞí
-*                   100£ºJTAG-DP½Ó¿ÚºÍSW-DP½Ó¿Ú¶¼½ûÖ¹
-*                   xxx£ºÆäËûÖµ£¬½ûÖ¹
+* Input         --> modeï¼šæ¨¡å¼å‚æ•°ï¼ˆè¯¦ç»†å®å®šä¹‰è§sys.hä¸­å®šä¹‰ï¼‰
+*                   000ï¼šJTAG-DP + SW-DPï¼ˆå¤ä½çŠ¶æ€ï¼‰
+*                   001ï¼šJTAG-DP + SW-DPï¼ˆé™¤äº†JNTRSTå¼•è„šï¼Œé‡Šæ”¾JRSTå¼•è„šï¼‰
+*                   010ï¼šJTAG-DPæ¥å£ç¦æ­¢ï¼ŒSW-DPæ¥å£å…è®¸
+*                   100ï¼šJTAG-DPæ¥å£å’ŒSW-DPæ¥å£éƒ½ç¦æ­¢
+*                   xxxï¼šå…¶ä»–å€¼ï¼Œç¦æ­¢
 * Output        --> none
 * Reaturn       --> none 
 ******************************************************************************/
 void STM_JTAG_Set(uint32_t mode)
 {
-	RCC->APB2ENR |= 1 << 0;		//Ê¹ÄÜ¸¨ÖúÊ±ÖÓ
-	AFIO->MAPR &= 0xf8ffffff;	//Çå³ıSWJ_CFG[2:0]Î»£¬¼´¡¾26:24¡¿
-	AFIO->MAPR |= (mode << 24);	//ÉèÖÃJTAGÄ£Ê½
+	RCC->APB2ENR |= 1 << 0;		//ä½¿èƒ½è¾…åŠ©æ—¶é’Ÿ
+	AFIO->MAPR &= 0xf8ffffff;	//æ¸…é™¤SWJ_CFG[2:0]ä½ï¼Œå³ã€26:24ã€‘
+	AFIO->MAPR |= (mode << 24);	//è®¾ç½®JTAGæ¨¡å¼
 }
 /******************************************************************************
-* Function Name --> ÏµÍ³Ê±ÖÓ³õÊ¼»¯
+* Function Name --> ç³»ç»Ÿæ—¶é’Ÿåˆå§‹åŒ–
 * Description   --> none
-* Input         --> pll£º±¶ÆµÊı¡£È¡Öµ·¶Î§£º2 ~ 16
+* Input         --> pllï¼šå€é¢‘æ•°ã€‚å–å€¼èŒƒå›´ï¼š2 ~ 16
 * Output        --> none
 * Reaturn       --> none 
 ******************************************************************************/
@@ -290,47 +290,47 @@ void STM_Clock_Init(uint8_t pll)
 {
 	uint8_t tmp = 0;
 	
-	MY_RCC_DeInit();	//¸´Î»²¢ÅäÖÃÏòÁ¿±í£¬²¢ÇÒ½«Íâ²¿ÖĞ¶ÏºÍÍâÉèÊ±ÖÓÈ«²¿¹Ø±Õ
+	MY_RCC_DeInit();	//å¤ä½å¹¶é…ç½®å‘é‡è¡¨ï¼Œå¹¶ä¸”å°†å¤–éƒ¨ä¸­æ–­å’Œå¤–è®¾æ—¶é’Ÿå…¨éƒ¨å…³é—­
 	
-	RCC->CR |= 0x00010000;  //Íâ²¿¸ßËÙÊ±ÖÓÊ¹ÄÜHSEON
+	RCC->CR |= 0x00010000;  //å¤–éƒ¨é«˜é€Ÿæ—¶é’Ÿä½¿èƒ½HSEON
 	
-	while(!(RCC->CR >> 17));//µÈ´ıÍâ²¿Ê±ÖÓ¾ÍĞ÷
+	while(!(RCC->CR >> 17));//ç­‰å¾…å¤–éƒ¨æ—¶é’Ÿå°±ç»ª
 	
 	RCC->CFGR = 0X00000400; //APB1=DIV2;APB2=DIV1;AHB=DIV1;
-	pll -= 2;//µÖÏû2¸öµ¥Î»
-	RCC->CFGR |= pll << 18;   //ÉèÖÃPLLÖµ 2~16
+	pll -= 2;//æŠµæ¶ˆ2ä¸ªå•ä½
+	RCC->CFGR |= pll << 18;   //è®¾ç½®PLLå€¼ 2~16
 	RCC->CFGR |= 1 << 16;	  //PLLSRC ON 
-	FLASH->ACR |= 0x32;	  //FLASH 2¸öÑÓÊ±ÖÜÆÚ
+	FLASH->ACR |= 0x32;	  //FLASH 2ä¸ªå»¶æ—¶å‘¨æœŸ
 
 	RCC->CR |= 0x01000000;  //PLLON
 	
-	while(!(RCC->CR >> 25));//µÈ´ıPLLËø¶¨
+	while(!(RCC->CR >> 25));//ç­‰å¾…PLLé”å®š
 	
-	RCC->CFGR |= 0x00000002;//PLL×÷ÎªÏµÍ³Ê±ÖÓ£¬×îºó²ÅÄÜ¿ªÆôPLL£¬ÒòÎªÉè¶¨PLLÊ±£¬PLLÏà¹ØÎ»±ØĞëÔÚ¹Ø±Õ×´Ì¬ÏÂ½øĞĞ
+	RCC->CFGR |= 0x00000002;//PLLä½œä¸ºç³»ç»Ÿæ—¶é’Ÿï¼Œæœ€åæ‰èƒ½å¼€å¯PLLï¼Œå› ä¸ºè®¾å®šPLLæ—¶ï¼ŒPLLç›¸å…³ä½å¿…é¡»åœ¨å…³é—­çŠ¶æ€ä¸‹è¿›è¡Œ
 	
-	while(tmp != 0x02)     //µÈ´ıPLL×÷ÎªÏµÍ³Ê±ÖÓÉèÖÃ³É¹¦
+	while(tmp != 0x02)     //ç­‰å¾…PLLä½œä¸ºç³»ç»Ÿæ—¶é’Ÿè®¾ç½®æˆåŠŸ
 	{   
 		tmp  = RCC->CFGR >> 2;
 		tmp &= 0x03;
 	}    
 }
 /******************************************************************************
-* Function Name --> BCDÂë×ªÎªHEX
+* Function Name --> BCDç è½¬ä¸ºHEX
 * Description   --> none
-* Input         --> BCD_Data£ºÒª×ª»»µÄBCDÊı¾İ
+* Input         --> BCD_Dataï¼šè¦è½¬æ¢çš„BCDæ•°æ®
 * Output        --> none
-* Reaturn       --> HEXÂë
+* Reaturn       --> HEXç 
 ******************************************************************************/
 uint8_t BCD_to_HEX(uint8_t BCD_Data)
 {
 	return((BCD_Data / 10) << 4 | (BCD_Data % 10));
 }
 /******************************************************************************
-* Function Name --> HEXÂë×ªÎªBCD
+* Function Name --> HEXç è½¬ä¸ºBCD
 * Description   --> none
-* Input         --> HEX_Data£ºÒª×ª»»µÄBCDÊı¾İ
+* Input         --> HEX_Dataï¼šè¦è½¬æ¢çš„BCDæ•°æ®
 * Output        --> none
-* Reaturn       --> BCDÂë
+* Reaturn       --> BCDç 
 ******************************************************************************/
 uint8_t HEX_to_BCD(uint8_t HEX_Data)
 {
@@ -380,7 +380,7 @@ unsigned char HexToChar(unsigned char bChar)
 }
 
 /*
-½«srcBuffÖ¸ÏòµÄlen¸ö³¤¶ÈµÄ×Ö·û´®Êı¾İ£¬°´Ê®Áù½øÖÆ×Ö·û±àÂë×ª»»Îª×Ö·û£¬²¢´æÓÚtarBuffÖĞ
+å°†srcBuffæŒ‡å‘çš„lenä¸ªé•¿åº¦çš„å­—ç¬¦ä¸²æ•°æ®ï¼ŒæŒ‰åå…­è¿›åˆ¶å­—ç¬¦ç¼–ç è½¬æ¢ä¸ºå­—ç¬¦ï¼Œå¹¶å­˜äºtarBuffä¸­
 */
 void HexStrToByte(unsigned char *tarBuff, const char *srcBuff, unsigned int len)
 {
@@ -404,10 +404,10 @@ void HexStrToByte(unsigned char *tarBuff, const char *srcBuff, unsigned int len)
 
 
 /*********************************
-HEX/BCD/BYTE/Ö®¼äµÄ×ª»»
+HEX/BCD/BYTE/ä¹‹é—´çš„è½¬æ¢
 **********************************/
 /*
-½«srcBuffÖ¸ÏòµÄlen¸ö×Ö½ÚµÄÊı¾İ£¬°´Ê®Áù½øÖÆ×Ö·û±àÂë×ª»»£¬²¢´æÓÚtarBuffÖĞ
+å°†srcBuffæŒ‡å‘çš„lenä¸ªå­—èŠ‚çš„æ•°æ®ï¼ŒæŒ‰åå…­è¿›åˆ¶å­—ç¬¦ç¼–ç è½¬æ¢ï¼Œå¹¶å­˜äºtarBuffä¸­
 */
 void ByteToHexStr(char *tarBuff, const unsigned char *srcBuff, unsigned int len)
 {
@@ -423,11 +423,11 @@ void ByteToHexStr(char *tarBuff, const unsigned char *srcBuff, unsigned int len)
 		
 		++srcBuff;
 	}
-	*tarBuff = 0;//¿Õ×Ö·û
+	*tarBuff = 0;//ç©ºå­—ç¬¦
 }
  
 /*
-½«ÎŞ·ûºÅ×Ö·ûÊı¾İ£¬×ª»»ÎªÊ®Áù½øÖÆÊı¾İ£¬²¢´æÓÚtarBuffÖĞ
+å°†æ— ç¬¦å·å­—ç¬¦æ•°æ®ï¼Œè½¬æ¢ä¸ºåå…­è¿›åˆ¶æ•°æ®ï¼Œå¹¶å­˜äºtarBuffä¸­
 */
 void BytetoBCD(unsigned char *tarBuff, const unsigned char *srcBuff, unsigned short len)
 {
@@ -438,22 +438,22 @@ void BytetoBCD(unsigned char *tarBuff, const unsigned char *srcBuff, unsigned sh
 }
 
 /******************************************************************************
-* Function Name --> 10½øÖÆÂë×ªÎª16½øÖÆ
+* Function Name --> 10è¿›åˆ¶ç è½¬ä¸º16è¿›åˆ¶
 * Description   --> none
-* Input         --> DX_Data£ºÒª×ª»»µÄ10½øÖÆÊı¾İ
+* Input         --> DX_Dataï¼šè¦è½¬æ¢çš„10è¿›åˆ¶æ•°æ®
 * Output        --> none
-* Reaturn       --> 16½øÖÆ
+* Reaturn       --> 16è¿›åˆ¶
 ******************************************************************************/
 uint16_t DX_to_HX(uint16_t DX_Data)
 {
 	return(((DX_Data/1000)<<12) | ((DX_Data%1000/100)<<8) | ((DX_Data%100/10)<<4) | (DX_Data%10));
 }
 /******************************************************************************
-* Function Name --> 16½øÖÆÂë×ªÎª10½øÖÆ
+* Function Name --> 16è¿›åˆ¶ç è½¬ä¸º10è¿›åˆ¶
 * Description   --> none
-* Input         --> HX_Data£ºÒª×ª»»µÄ16½øÖÆÊı¾İ
+* Input         --> HX_Dataï¼šè¦è½¬æ¢çš„16è¿›åˆ¶æ•°æ®
 * Output        --> none
-* Reaturn       --> 10½øÖÆ
+* Reaturn       --> 10è¿›åˆ¶
 ******************************************************************************/
 uint16_t HX_to_DX(uint16_t HX_Data)
 {
@@ -461,23 +461,23 @@ uint16_t HX_to_DX(uint16_t HX_Data)
 }	
 
 /******************************************************************************
-* Function Name --> ³õÊ¼»¯Êı¾İÁĞ±í
+* Function Name --> åˆå§‹åŒ–æ•°æ®åˆ—è¡¨
 * Description   --> none
-* Input         --> *LIST£ºÁĞ±íÖ¸Õë
+* Input         --> *LISTï¼šåˆ—è¡¨æŒ‡é’ˆ
 * Output        --> none
 * Reaturn       --> none
 ******************************************************************************/
 //void Sqlist_Init(Sqlist *LIST)
 //{
 //	LIST->elem = (uint16_t*)malloc(MaxSize * sizeof(ElemType));
-//	//·ÖÅäÒ»¸ö³¤¶ÈÎªMaxSize * sizeof(ElemType)´óĞ¡µÄÄÚ´æ¿Õ¼ä
-//	if(!LIST->elem)	return;	//Ã»ÓĞÉú³ÉÊı¾İÁĞ±í£¬Ö±½ÓÍË³ö
-//	//·ÖÅä³É¹¦
-//	LIST->length = 0;	//ÁĞ±íÖĞÃ»ÄÚÈİ
-//	LIST->listsize = MaxSize;	//¸ÃÊı¾İ±íÕ¼ÓÃÄÚ´æ´óĞ¡ÎªMaxSize£¨ÒÔsizeof(ElemType)Îªµ¥Î»£©
+//	//åˆ†é…ä¸€ä¸ªé•¿åº¦ä¸ºMaxSize * sizeof(ElemType)å¤§å°çš„å†…å­˜ç©ºé—´
+//	if(!LIST->elem)	return;	//æ²¡æœ‰ç”Ÿæˆæ•°æ®åˆ—è¡¨ï¼Œç›´æ¥é€€å‡º
+//	//åˆ†é…æˆåŠŸ
+//	LIST->length = 0;	//åˆ—è¡¨ä¸­æ²¡å†…å®¹
+//	LIST->listsize = MaxSize;	//è¯¥æ•°æ®è¡¨å ç”¨å†…å­˜å¤§å°ä¸ºMaxSizeï¼ˆä»¥sizeof(ElemType)ä¸ºå•ä½ï¼‰
 //}
 /******************************************************************************
-* Function Name --> ¸´Î»Êı¾İÁĞ±í
+* Function Name --> å¤ä½æ•°æ®åˆ—è¡¨
 * Description   --> none
 * Input         --> none
 * Output        --> none
@@ -487,35 +487,35 @@ uint16_t HX_to_DX(uint16_t HX_Data)
 //{
 //	Sqlist *list;
 //
-//	list->elem = 0;	//Ê×µØÖ·ÇåÁã
-//	list->length = 0;	//³¤¶ÈÇåÁã
-//	list->listsize = 0;	//ÁĞ±í´óĞ¡Îª0
+//	list->elem = 0;	//é¦–åœ°å€æ¸…é›¶
+//	list->length = 0;	//é•¿åº¦æ¸…é›¶
+//	list->listsize = 0;	//åˆ—è¡¨å¤§å°ä¸º0
 //}
 /******************************************************************************
-* Function Name --> ÏòÒ»¸ö¶¯Ì¬µÄÊı¾İÁĞ±í²åÈëÒ»¸öÔªËØ
+* Function Name --> å‘ä¸€ä¸ªåŠ¨æ€çš„æ•°æ®åˆ—è¡¨æ’å…¥ä¸€ä¸ªå…ƒç´ 
 * Description   --> none
-* Input         --> *L£ºÁĞ±íÖ¸Õë
-*                    i£ºÁĞ±íÖĞµÚi¸öÎ»ÖÃ²åÈëÔªËØ
-*                    item£ºÔÚµÚi¸öÎ»ÖÃËù²åÈëµÄÔªËØ
+* Input         --> *Lï¼šåˆ—è¡¨æŒ‡é’ˆ
+*                    iï¼šåˆ—è¡¨ä¸­ç¬¬iä¸ªä½ç½®æ’å…¥å…ƒç´ 
+*                    itemï¼šåœ¨ç¬¬iä¸ªä½ç½®æ‰€æ’å…¥çš„å…ƒç´ 
 * Output        --> none
 * Reaturn       --> none
 ******************************************************************************/
 //void InsertElem(Sqlist *L,uint16_t i,ElemType item)
-//{	/* ÏòË³ĞòÁĞ±í*LµÄµÚi¸öÎ»ÖÃ²åÈëÔªËØitem */
+//{	/* å‘é¡ºåºåˆ—è¡¨*Lçš„ç¬¬iä¸ªä½ç½®æ’å…¥å…ƒç´ item */
 //	ElemType *base, *insertPtr, *p;
 //
-//	if(i < 1 || i > L->length + 1)	return;	//·Ç·¨²åÈë
-//	if(L->length >= L->listsize)	//ÔÚÊı¾İÁĞ±í×îºóÒ»¸öÎ»ÖÃ²åÈëÔªËØ
-//	{	//×·¼ÓÄÚ´æ¿Õ¼ä
+//	if(i < 1 || i > L->length + 1)	return;	//éæ³•æ’å…¥
+//	if(L->length >= L->listsize)	//åœ¨æ•°æ®åˆ—è¡¨æœ€åä¸€ä¸ªä½ç½®æ’å…¥å…ƒç´ 
+//	{	//è¿½åŠ å†…å­˜ç©ºé—´
 //		base = (ElemType*)realloc(L->elem,(L->listsize + 10) * sizeof(ElemType));
-//		L->elem = base;	//¸üĞÂÄÚ´æ»ùµØÖ·
-//		L->listsize = L->listsize + 100;	//´æ´¢¿Õ¼äÔö¼Ó100¸öµ¥Ôª
+//		L->elem = base;	//æ›´æ–°å†…å­˜åŸºåœ°å€
+//		L->listsize = L->listsize + 100;	//å­˜å‚¨ç©ºé—´å¢åŠ 100ä¸ªå•å…ƒ
 //	}
-//	insertPtr = &(L->Elem[i - 1]);	//insertPtrÎª²åÈëÎ»ÖÃ
+//	insertPtr = &(L->Elem[i - 1]);	//insertPträ¸ºæ’å…¥ä½ç½®
 //	for(p = &(L->elem[L->length - 1]);p >= insertPtr;p--)
-//		*(p + 1) = *p;	//½«i - 1ÒÔºóµÄÔªËØË³ĞòÏòºóÒÆÒ»¸öÔªËØÎ»ÖÃ
-//	*insertPtr = item;	//ÔÚµÚi¸öÎ»ÖÃÉÏ²åÈëÔªËØitem
-//	L->length++;	//±í³¤¼Ó1
+//		*(p + 1) = *p;	//å°†i - 1ä»¥åçš„å…ƒç´ é¡ºåºå‘åç§»ä¸€ä¸ªå…ƒç´ ä½ç½®
+//	*insertPtr = item;	//åœ¨ç¬¬iä¸ªä½ç½®ä¸Šæ’å…¥å…ƒç´ item
+//	L->length++;	//è¡¨é•¿åŠ 1
 //}
 
 
